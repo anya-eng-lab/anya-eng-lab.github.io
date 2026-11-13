@@ -5,7 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vocabulary | Anya's IELTS Lab</title>
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
         body {
             font-family: 'Georgia', serif;
             background-color: #f9f6f0;
@@ -13,6 +17,26 @@
             position: relative;
             min-height: 100vh;
             overflow-x: hidden;
+        }
+
+        /* ТВОИ ЗЕЛЕНАЯ И РОЗОВАЯ ПОЛОСЫ */
+        .bg-stripe-green {
+            position: absolute;
+            left: 15%;
+            top: 0;
+            bottom: 0;
+            width: 20px;
+            background-color: #7a9a7e;
+            z-index: -1;
+        }
+        .bg-stripe-pink {
+            position: absolute;
+            left: 17%;
+            top: 0;
+            bottom: 0;
+            width: 12px;
+            background-color: #e8b4c8;
+            z-index: -1;
         }
 
         /* Шапка */
@@ -32,7 +56,7 @@
             padding: 0 20px;
             display: flex;
             flex-direction: column;
-            gap: 40px; /* Расстояние между карточками */
+            gap: 30px; /* Расстояние между карточками */
             position: relative;
         }
 
@@ -52,7 +76,7 @@
             display: flex; flex-direction: column; align-items: center;
         }
         .level-card:hover {
-            transform: translateY(-5px) scale(1.02);
+            transform: translateY(-5px);
             box-shadow: 12px 12px 0px rgba(212, 106, 140, 0.3);
             border-color: #d46a8c;
         }
@@ -62,27 +86,18 @@
         }
         .level-card p { font-size: 1rem; color: #555; text-transform: uppercase; }
 
-        /* Вот та самая петелька */
-        .loop-line {
+        /* ТА САМАЯ ДИАГОНАЛЬНАЯ ЛИНИЯ С ПЕТЕЛЬКОЙ */
+        .swoosh-line {
             position: absolute;
-            top: 20%; /* Где будет петелька */
-            left: -5%; /* Сдвиг влево */
-            width: 110%; /* Ширина петельки */
-            height: 150px; /* Высота петельки */
-            border: 4px dashed #e8b4c8; /* Пунктир */
-            border-radius: 50%; /* Закругление в овал */
+            top: 30%; /* Высота, на которой она проходит */
+            left: -20%;
+            width: 140%;
+            height: 200px;
+            border-top: 4px dashed #e8b4c8; /* Пунктир */
+            border-radius: 50%; /* Закругляем края, чтобы была петля */
             z-index: 1; /* Под карточками, но над фоном */
-            transform: rotate(-10deg); /* Наклон */
-            pointer-events: none; /* Чтобы не мешала кликать */
-        }
-        
-        /* Вторая петелька, чтобы было интереснее */
-        .loop-line.second {
-            top: 65%; /* Ниже */
-            left: -15%;
-            width: 120%;
-            height: 100px;
-            transform: rotate(8deg);
+            transform: rotate(-8deg); /* Тот самый наклон */
+            pointer-events: none;
         }
 
         /* Стикер */
@@ -91,24 +106,34 @@
             font-size: 1.5rem; font-weight: bold; color: #7a9a7e;
             transform: rotate(-10deg); border: 2px solid #7a9a7e;
             padding: 10px 20px; border-radius: 5px; z-index: 10;
+            background: #f9f6f0;
         }
 
         @media (max-width: 600px) {
             h1 { font-size: 2rem; }
             .level-card h2 { font-size: 2.5rem; }
-            .loop-line { display: none; } /* На телефоне прячем, чтобы не мешало */
+            .bg-stripe-green { left: 5%; }
+            .bg-stripe-pink { left: 8%; }
+            .swoosh-line { display: none; } /* На телефоне прячем */
             .sticker { display: none; }
         }
     </style>
 </head>
-<body>
+<body><!-- Твои вертикальные полосы -->
+    <div class="bg-stripe-green"></div>
+    <div class="bg-stripe-pink"></div>
 
     <header>
         <a href="index.html" class="back-btn">← На главную</a>
         <h1>Vocabulary</h1>
         <p class="subtitle">Выбери свой уровень и начни учить слова</p>
     </header>
-<a href="#" class="level-card"><h2>A0-A1</h2><p>Beginner</p></a>
+
+    <section class="levels-container">
+        <!-- Вот твоя линия с петелькой -->
+        <div class="swoosh-line"></div>
+
+        <a href="#" class="level-card"><h2>A0-A1</h2><p>Beginner</p></a>
         <a href="#" class="level-card"><h2>A2</h2><p>Elementary</p></a>
         <a href="#" class="level-card"><h2>B1</h2><p>Intermediate</p></a>
         <a href="#" class="level-card"><h2>B2</h2><p>Upper-Intermediate</p></a>
@@ -120,7 +145,3 @@
 
 </body>
 </html>
-    <section class="levels-container">
-        <!-- Вот наши петельки, они лежат за карточками -->
-        <div class="loop-line"></div>
-        <div class="loop-line second"></div>
