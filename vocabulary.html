@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -19,32 +20,12 @@
             overflow-x: hidden;
         }
 
-        /* Твои полосы слева */
-        .bg-stripe-green {
-            position: absolute;
-            left: 15%;
-            top: 0;
-            bottom: 0;
-            width: 20px;
-            background-color: #7a9a7e;
-            z-index: 0;
-        }
-        .bg-stripe-pink {
-            position: absolute;
-            left: 17%;
-            top: 0;
-            bottom: 0;
-            width: 12px;
-            background-color: #e8b4c8;
-            z-index: 0;
-        }
-
         /* Шапка */
         header {
-            padding: 40px 20px;
+            padding: 60px 20px 20px; /* Больше отступа сверху */
             text-align: center;
             position: relative;
-            z-index: 2;
+            z-index: 2; /* Чтобы текст был поверх линии */
         }
         .back-btn {
             display: inline-block;
@@ -54,7 +35,10 @@
             margin-bottom: 20px;
             font-size: 1.1rem;
             border-bottom: 2px dashed #d46a8c;
+            transition: 0.3s;
         }
+        .back-btn:hover { color: #2c3e2e; border-color: #2c3e2e; }
+        
         h1 {
             font-size: 3rem;
             color: #2c3e2e;
@@ -71,34 +55,31 @@
         /* Контейнер для карточек и линии */
         .content-wrapper {
             position: relative;
-            max-width: 800px; /* Делаем чуть шире, чтобы линия влезла */
+            max-width: 600px;
             margin: 0 auto;
-            padding: 20px 20px 100px;
-            display: flex;
-            justify-content: center;
+            padding: 40px 20px 100px;
         }
 
-        /* Волнистая линия на фоне */
-        .wavy-line {
+        /* ТА САМАЯ РОЗОВАЯ ПУНКТИРНАЯ ЛИНИЯ */
+        /* Она позиционируется абсолютно внутри контейнера и идет сверху вниз */
+        .dashed-line {
             position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%); /* Центрируем линию */
-            width: 400px; /* Ширина волны */
-            height: 100%;
-            z-index: 1; /* Позади карточек (у карточек будет 2) */
-            pointer-events: none;
+            top: 40px;
+            left: 50%; /* Ровно по центру */
+            bottom: 100px;
+            width: 6px;
+            border-left: 6px dashed #e8b4c8; /* Толстый розовый пунктир */
+            z-index: 0; /* Позади карточек */
+            transform: translateX(-50%); /* Точное центрирование */
         }
 
-        /* Сами карточки */
+        /* Карточки уровней */
         .levels-container {
-            width: 100%;
-            max-width: 500px;
             display: flex;
             flex-direction: column;
-            gap: 30px;
+            gap: 30px; /* Расстояние между карточками */
             position: relative;
-            z-index: 2; /* Поверх линии */
+            z-index: 1; /* Поверх линии */
         }
 
         .level-card {
@@ -114,10 +95,11 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
         }
 
         .level-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-5px) scale(1.02);
             box-shadow: 12px 12px 0px rgba(212, 106, 140, 0.3);
             border-color: #d46a8c;
         }
@@ -131,33 +113,20 @@
 
         .level-card p {
             font-size: 1rem;
-            color: #555;font-size: 1.5rem;
-            font-weight: bold;
-            color: #7a9a7e;
-            transform: rotate(-10deg);
-            border: 2px solid #7a9a7e;
-            padding: 10px 20px;
-            border-radius: 5px;
-            z-index: 10;
-            background: #f9f6f0;
+            color: #555;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
-
-        /* Адаптация под телефоны */
+/* Адаптация под телефоны */
         @media (max-width: 600px) {
             h1 { font-size: 2rem; }
             .level-card h2 { font-size: 2.5rem; }
-            .bg-stripe-green { left: 5%; }
-            .bg-stripe-pink { left: 8%; }
-            .wavy-line { width: 250px; } /* На телефоне волна уже */
+            .dashed-line { border-left-width: 4px; left: 50%; }
             .sticker { display: none; }
         }
     </style>
 </head>
 <body>
-
-    <!-- Твои полосы -->
-    <div class="bg-stripe-green"></div>
-    <div class="bg-stripe-pink"></div>
 
     <header>
         <a href="index.html" class="back-btn">← На главную</a>
@@ -165,37 +134,56 @@
         <p class="subtitle">Выбери свой уровень и начни учить слова</p>
     </header>
 
-    <!-- Обертка, в которой лежат и линия, и карточки -->
+    <!-- Обертка для карточек и линии -->
     <div class="content-wrapper">
         
-        <!-- Вот эта самая волнистая линия, она нарисована кодом -->
-        <svg class="wavy-line" viewBox="0 0 400 1200" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-            <!-- Этот код рисует волну сверху вниз -->
-            <path d="M 200 0 C 400 150, 0 300, 200 450 C 400 600, 0 750, 200 900 C 400 1050, 0 1200, 200 1200" 
-                  fill="none" stroke="#e8b4c8" stroke-width="6" stroke-dasharray="15 15" stroke-linecap="round"/>
-        </svg>
+        <!-- Вот она, твоя розовая пунктирная линия -->
+        <div class="dashed-line"></div>
 
-        <!-- Твои карточки -->
+        <!-- Карточки уровней -->
         <section class="levels-container">
-            <a href="#" class="level-card"><h2>A0-A1</h2><p>Beginner</p></a>
-            <a href="#" class="level-card"><h2>A2</h2><p>Elementary</p></a>
-            <a href="#" class="level-card"><h2>B1</h2><p>Intermediate</p></a>
-            <a href="#" class="level-card"><h2>B2</h2><p>Upper-Intermediate</p></a>
-            <a href="#" class="level-card"><h2>C1</h2><p>Advanced</p></a>
-            <a href="#" class="level-card"><h2>C2</h2><p>Proficiency</p></a>
+            <a href="#" class="level-card">
+                <h2>A0-A1</h2>
+                <p>Beginner</p>
+            </a>
+            <a href="#" class="level-card">
+                <h2>A2</h2>
+                <p>Elementary</p>
+            </a>
+            <a href="#" class="level-card">
+                <h2>B1</h2>
+                <p>Intermediate</p>
+            </a>
+            <a href="#" class="level-card">
+                <h2>B2</h2>
+                <p>Upper-Intermediate</p>
+            </a>
+            <a href="#" class="level-card">
+                <h2>C1</h2>
+                <p>Advanced</p>
+            </a>
+            <a href="#" class="level-card">
+                <h2>C2</h2>
+                <p>Proficiency</p>
+            </a>
         </section>
 
     </div>
 
+    <!-- Стикер -->
     <div class="sticker">Never give up</div>
 
 </body>
-</html>
-            text-transform: uppercase;
+</html>внизу экрана */
+            bottom: 30px;
+            left: 30px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #7a9a7e;
+            transform: rotate(-10deg);
+            border: 2px solid #7a9a7e;
+            padding: 10px 20px;
+            border-radius: 5px;
+            background: #f9f6f0;
+            z-index: 10;
         }
-
-        /* Стикер */
-        .sticker {
-            position: absolute;
-            bottom: 40px;
-            left: 50px;
