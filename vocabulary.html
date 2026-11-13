@@ -19,7 +19,7 @@
             overflow-x: hidden;
         }
 
-        /* Твои вертикальные полосы слева */
+        /* Твои полосы слева */
         .bg-stripe-green {
             position: absolute;
             left: 15%;
@@ -27,7 +27,7 @@
             bottom: 0;
             width: 20px;
             background-color: #7a9a7e;
-            z-index: -1;
+            z-index: 0;
         }
         .bg-stripe-pink {
             position: absolute;
@@ -36,50 +36,71 @@
             bottom: 0;
             width: 12px;
             background-color: #e8b4c8;
-            z-index: -1;
+            z-index: 0;
         }
 
         /* Шапка */
-        header { 
-            padding: 40px 20px; 
-            text-align: center; 
-            position: relative; 
-            z-index: 2; 
+        header {
+            padding: 40px 20px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
         }
         .back-btn {
-            display: inline-block; 
-            text-decoration: none; 
+            display: inline-block;
+            text-decoration: none;
             color: #d46a8c;
-            font-weight: bold; 
-            margin-bottom: 20px; 
+            font-weight: bold;
+            margin-bottom: 20px;
             font-size: 1.1rem;
             border-bottom: 2px dashed #d46a8c;
         }
-        h1 { 
-            font-size: 3rem; 
-            text-transform: uppercase; 
-            letter-spacing: 2px; 
+        h1 {
+            font-size: 3rem;
             color: #2c3e2e;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
-        .subtitle { 
-            font-size: 1.2rem; 
-            color: #d46a8c; 
-            margin-top: 10px; 
-            font-style: italic; 
+        .subtitle {
+            font-size: 1.2rem;
+            color: #d46a8c;
+            margin-top: 10px;
+            font-style: italic;
         }
 
-        /* Контейнер для карточек */
+        /* Контейнер для карточек и линии */
+        .content-wrapper {
+            position: relative;
+            max-width: 800px; /* Делаем чуть шире, чтобы линия влезла */
+            margin: 0 auto;
+            padding: 20px 20px 100px;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* Волнистая линия на фоне */
+        .wavy-line {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%); /* Центрируем линию */
+            width: 400px; /* Ширина волны */
+            height: 100%;
+            z-index: 1; /* Позади карточек (у карточек будет 2) */
+            pointer-events: none;
+        }
+
+        /* Сами карточки */
         .levels-container {
-            max-width: 600px;
-            margin: 40px auto 80px;
-            padding: 0 20px;
+            width: 100%;
+            max-width: 500px;
             display: flex;
             flex-direction: column;
-            gap: 30px; /* Отступ между карточками */
+            gap: 30px;
             position: relative;
+            z-index: 2; /* Поверх линии */
         }
 
-        /* Вот твои красивые карточки */
         .level-card {
             background: #ffffff;
             border: 4px solid #7a9a7e;
@@ -90,70 +111,51 @@
             color: #2c3e2e;
             transition: all 0.3s ease;
             box-shadow: 8px 8px 0px rgba(122, 154, 126, 0.2);
-            position: relative;
-            z-index: 2; /* Карточки поверх линии */
-            display: flex; 
-            flex-direction: column; 
+            display: flex;
+            flex-direction: column;
             align-items: center;
         }
-        
+
         .level-card:hover {
             transform: translateY(-5px);
             box-shadow: 12px 12px 0px rgba(212, 106, 140, 0.3);
             border-color: #d46a8c;
         }
-        
+
         .level-card h2 {
-            font-size: 3rem; 
-            color: #d46a8c; 
+            font-size: 3rem;
+            color: #d46a8c;
             margin-bottom: 10px;
             font-family: 'Courier New', Courier, monospace;
         }
-        
-        .level-card p { 
-            font-size: 1rem; 
-            color: #555; 
-            text-transform: uppercase; 
-        }
 
-        /* ТА САМАЯ ЛИНИЯ (Диагональная с петелькой) */
-        .swoosh-line {
-            position: absolute;
-            top: 40%; /* На какой высоте проходит */
-            left: -15%;
-            width: 130%; /* Длина линии */
-            height: 80px; /* Высота петельки */
-            border-top: 4px dashed #e8b4c8; /* Пунктир */
-            border-radius: 50%; /* Закругление в петельку */
-            z-index: 1; /* Под карточками */
-            transform: rotate(-6deg); /* Наклон, как на фото */
-            pointer-events: none;position: absolute; 
-            bottom: 40px; 
-            left: 50px;
-            font-size: 1.5rem; 
-            font-weight: bold; 
+        .level-card p {
+            font-size: 1rem;
+            color: #555;font-size: 1.5rem;
+            font-weight: bold;
             color: #7a9a7e;
-            transform: rotate(-10deg); 
+            transform: rotate(-10deg);
             border: 2px solid #7a9a7e;
-            padding: 10px 20px; 
-            border-radius: 5px; 
+            padding: 10px 20px;
+            border-radius: 5px;
             z-index: 10;
             background: #f9f6f0;
         }
 
+        /* Адаптация под телефоны */
         @media (max-width: 600px) {
             h1 { font-size: 2rem; }
             .level-card h2 { font-size: 2.5rem; }
             .bg-stripe-green { left: 5%; }
             .bg-stripe-pink { left: 8%; }
-            .swoosh-line { display: none; }
+            .wavy-line { width: 250px; } /* На телефоне волна уже */
             .sticker { display: none; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Вертикальные полосы -->
+    <!-- Твои полосы -->
     <div class="bg-stripe-green"></div>
     <div class="bg-stripe-pink"></div>
 
@@ -163,27 +165,37 @@
         <p class="subtitle">Выбери свой уровень и начни учить слова</p>
     </header>
 
-    <section class="levels-container">
+    <!-- Обертка, в которой лежат и линия, и карточки -->
+    <div class="content-wrapper">
         
-       <!-- Волнистая пунктирная линия -->
-<svg class="bg-wave" viewBox="0 0 600 1200" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M 100 0 C 500 150, -100 400, 300 600 C 600 800, 0 1000, 200 1200" 
-          fill="none" stroke="#e8b4c8" stroke-width="10" stroke-dasharray="20 20" stroke-linecap="round"/>
-</svg>
+        <!-- Вот эта самая волнистая линия, она нарисована кодом -->
+        <svg class="wavy-line" viewBox="0 0 400 1200" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Этот код рисует волну сверху вниз -->
+            <path d="M 200 0 C 400 150, 0 300, 200 450 C 400 600, 0 750, 200 900 C 400 1050, 0 1200, 200 1200" 
+                  fill="none" stroke="#e8b4c8" stroke-width="6" stroke-dasharray="15 15" stroke-linecap="round"/>
+        </svg>
 
-        <a href="#" class="level-card"><h2>A0-A1</h2><p>Beginner</p></a>
-        <a href="#" class="level-card"><h2>A2</h2><p>Elementary</p></a>
-        <a href="#" class="level-card"><h2>B1</h2><p>Intermediate</p></a>
-        <a href="#" class="level-card"><h2>B2</h2><p>Upper-Intermediate</p></a>
-        <a href="#" class="level-card"><h2>C1</h2><p>Advanced</p></a>
-        <a href="#" class="level-card"><h2>C2</h2><p>Proficiency</p></a>
-    </section>
+        <!-- Твои карточки -->
+        <section class="levels-container">
+            <a href="#" class="level-card"><h2>A0-A1</h2><p>Beginner</p></a>
+            <a href="#" class="level-card"><h2>A2</h2><p>Elementary</p></a>
+            <a href="#" class="level-card"><h2>B1</h2><p>Intermediate</p></a>
+            <a href="#" class="level-card"><h2>B2</h2><p>Upper-Intermediate</p></a>
+            <a href="#" class="level-card"><h2>C1</h2><p>Advanced</p></a>
+            <a href="#" class="level-card"><h2>C2</h2><p>Proficiency</p></a>
+        </section>
+
+    </div>
 
     <div class="sticker">Never give up</div>
 
 </body>
 </html>
+            text-transform: uppercase;
         }
 
         /* Стикер */
         .sticker {
+            position: absolute;
+            bottom: 40px;
+            left: 50px;
