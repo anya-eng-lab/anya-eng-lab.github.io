@@ -5,11 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vocabulary | Anya's IELTS Lab</title>
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
             font-family: 'Georgia', serif;
             background-color: #f9f6f0;
@@ -20,67 +16,27 @@
         }
 
         /* Шапка */
-        header {
-            padding: 60px 20px 20px; /* Больше отступа сверху */
-            text-align: center;
-            position: relative;
-            z-index: 2; /* Чтобы текст был поверх линии */
-        }
+        header { padding: 40px 20px; text-align: center; position: relative; z-index: 2; }
         .back-btn {
-            display: inline-block;
-            text-decoration: none;
-            color: #d46a8c;
-            font-weight: bold;
-            margin-bottom: 20px;
-            font-size: 1.1rem;
+            display: inline-block; text-decoration: none; color: #d46a8c;
+            font-weight: bold; margin-bottom: 20px; font-size: 1.1rem;
             border-bottom: 2px dashed #d46a8c;
-            transition: 0.3s;
         }
-        .back-btn:hover { color: #2c3e2e; border-color: #2c3e2e; }
-        
-        h1 {
-            font-size: 3rem;
-            color: #2c3e2e;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-        .subtitle {
-            font-size: 1.2rem;
-            color: #d46a8c;
-            margin-top: 10px;
-            font-style: italic;
-        }
+        h1 { font-size: 3rem; text-transform: uppercase; letter-spacing: 2px; }
+        .subtitle { font-size: 1.2rem; color: #d46a8c; margin-top: 10px; font-style: italic; }
 
-        /* Контейнер для карточек и линии */
-        .content-wrapper {
-            position: relative;
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 40px 20px 100px;
-        }
-
-        /* ТА САМАЯ РОЗОВАЯ ПУНКТИРНАЯ ЛИНИЯ */
-        /* Она позиционируется абсолютно внутри контейнера и идет сверху вниз */
-        .dashed-line {
-            position: absolute;
-            top: 40px;
-            left: 50%; /* Ровно по центру */
-            bottom: 100px;
-            width: 6px;
-            border-left: 6px dashed #e8b4c8; /* Толстый розовый пунктир */
-            z-index: 0; /* Позади карточек */
-            transform: translateX(-50%); /* Точное центрирование */
-        }
-
-        /* Карточки уровней */
+        /* Контейнер для карточек */
         .levels-container {
+            max-width: 600px;
+            margin: 40px auto 80px;
+            padding: 0 20px;
             display: flex;
             flex-direction: column;
-            gap: 30px; /* Расстояние между карточками */
+            gap: 40px; /* Расстояние между карточками */
             position: relative;
-            z-index: 1; /* Поверх линии */
         }
 
+        /* Карточки */
         .level-card {
             background: #ffffff;
             border: 4px solid #7a9a7e;
@@ -91,51 +47,56 @@
             color: #2c3e2e;
             transition: all 0.3s ease;
             box-shadow: 8px 8px 0px rgba(122, 154, 126, 0.2);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+            position: relative;
+            z-index: 2; /* Карточки поверх линии */
+            display: flex; flex-direction: column; align-items: center;
         }
-
         .level-card:hover {
             transform: translateY(-5px) scale(1.02);
             box-shadow: 12px 12px 0px rgba(212, 106, 140, 0.3);
             border-color: #d46a8c;
         }
-
         .level-card h2 {
-            font-size: 3rem;
-            color: #d46a8c;
-            margin-bottom: 10px;
+            font-size: 3rem; color: #d46a8c; margin-bottom: 10px;
             font-family: 'Courier New', Courier, monospace;
         }
+        .level-card p { font-size: 1rem; color: #555; text-transform: uppercase; }
 
-        .level-card p {
-            font-size: 1rem;
-            color: #555;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+        /* Вот та самая петелька */
+        .loop-line {
+            position: absolute;
+            top: 20%; /* Где будет петелька */
+            left: -5%; /* Сдвиг влево */
+            width: 110%; /* Ширина петельки */
+            height: 150px; /* Высота петельки */
+            border: 4px dashed #e8b4c8; /* Пунктир */
+            border-radius: 50%; /* Закругление в овал */
+            z-index: 1; /* Под карточками, но над фоном */
+            transform: rotate(-10deg); /* Наклон */
+            pointer-events: none; /* Чтобы не мешала кликать */
+        }
+        
+        /* Вторая петелька, чтобы было интереснее */
+        .loop-line.second {
+            top: 65%; /* Ниже */
+            left: -15%;
+            width: 120%;
+            height: 100px;
+            transform: rotate(8deg);
         }
 
         /* Стикер */
         .sticker {
-            position: fixed; /* Теперь он всегда внизу экрана */
-            bottom: 30px;
-            left: 30px;
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #7a9a7e;
-            transform: rotate(-10deg);
-            border: 2px solid #7a9a7e;
-            padding: 10px 20px;
-            border-radius: 5px;
-            background: #f9f6f0;
-            z-index: 10;
-        }/* Адаптация под телефоны */
+            position: absolute; bottom: 40px; left: 50px;
+            font-size: 1.5rem; font-weight: bold; color: #7a9a7e;
+            transform: rotate(-10deg); border: 2px solid #7a9a7e;
+            padding: 10px 20px; border-radius: 5px; z-index: 10;
+        }
+
         @media (max-width: 600px) {
             h1 { font-size: 2rem; }
             .level-card h2 { font-size: 2.5rem; }
-            .dashed-line { border-left-width: 4px; left: 50%; }
+            .loop-line { display: none; } /* На телефоне прячем, чтобы не мешало */
             .sticker { display: none; }
         }
     </style>
@@ -147,45 +108,19 @@
         <h1>Vocabulary</h1>
         <p class="subtitle">Выбери свой уровень и начни учить слова</p>
     </header>
+<a href="#" class="level-card"><h2>A0-A1</h2><p>Beginner</p></a>
+        <a href="#" class="level-card"><h2>A2</h2><p>Elementary</p></a>
+        <a href="#" class="level-card"><h2>B1</h2><p>Intermediate</p></a>
+        <a href="#" class="level-card"><h2>B2</h2><p>Upper-Intermediate</p></a>
+        <a href="#" class="level-card"><h2>C1</h2><p>Advanced</p></a>
+        <a href="#" class="level-card"><h2>C2</h2><p>Proficiency</p></a>
+    </section>
 
-    <!-- Обертка для карточек и линии -->
-    <div class="content-wrapper">
-        
-        <!-- Вот она, твоя розовая пунктирная линия -->
-        <div class="dashed-line"></div>
-
-        <!-- Карточки уровней -->
-        <section class="levels-container">
-            <a href="#" class="level-card">
-                <h2>A0-A1</h2>
-                <p>Beginner</p>
-            </a>
-            <a href="#" class="level-card">
-                <h2>A2</h2>
-                <p>Elementary</p>
-            </a>
-            <a href="#" class="level-card">
-                <h2>B1</h2>
-                <p>Intermediate</p>
-            </a>
-            <a href="#" class="level-card">
-                <h2>B2</h2>
-                <p>Upper-Intermediate</p>
-            </a>
-            <a href="#" class="level-card">
-                <h2>C1</h2>
-                <p>Advanced</p>
-            </a>
-            <a href="#" class="level-card">
-                <h2>C2</h2>
-                <p>Proficiency</p>
-            </a>
-        </section>
-
-    </div>
-
-    <!-- Стикер -->
     <div class="sticker">Never give up</div>
 
 </body>
 </html>
+    <section class="levels-container">
+        <!-- Вот наши петельки, они лежат за карточками -->
+        <div class="loop-line"></div>
+        <div class="loop-line second"></div>
