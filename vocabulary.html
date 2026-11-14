@@ -20,12 +20,32 @@
             overflow-x: hidden;
         }
 
+        /* Зеленая и розовая полосы слева */
+        .bg-stripe-green {
+            position: absolute;
+            left: 15%;
+            top: 0;
+            bottom: 0;
+            width: 20px;
+            background-color: #7a9a7e;
+            z-index: 0;
+        }
+        .bg-stripe-pink {
+            position: absolute;
+            left: 17%;
+            top: 0;
+            bottom: 0;
+            width: 12px;
+            background-color: #e8b4c8;
+            z-index: 0;
+        }
+
         /* Шапка */
         header {
-            padding: 60px 20px 20px; /* Больше отступа сверху */
+            padding: 40px 20px;
             text-align: center;
             position: relative;
-            z-index: 2; /* Чтобы текст был поверх линии */
+            z-index: 2;
         }
         .back-btn {
             display: inline-block;
@@ -35,10 +55,7 @@
             margin-bottom: 20px;
             font-size: 1.1rem;
             border-bottom: 2px dashed #d46a8c;
-            transition: 0.3s;
         }
-        .back-btn:hover { color: #2c3e2e; border-color: #2c3e2e; }
-        
         h1 {
             font-size: 3rem;
             color: #2c3e2e;
@@ -52,36 +69,19 @@
             font-style: italic;
         }
 
-        /* Контейнер для карточек и линии */
-        .content-wrapper {
-            position: relative;
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 40px 20px 100px;
-        }
-
-        /* ТА САМАЯ РОЗОВАЯ ПУНКТИРНАЯ ЛИНИЯ */
-        /* Она позиционируется абсолютно внутри контейнера и идет сверху вниз */
-        .dashed-line {
-            position: absolute;
-            top: 40px;
-            left: 50%; /* Ровно по центру */
-            bottom: 100px;
-            width: 6px;
-            border-left: 6px dashed #e8b4c8; /* Толстый розовый пунктир */
-            z-index: 0; /* Позади карточек */
-            transform: translateX(-50%); /* Точное центрирование */
-        }
-
-        /* Карточки уровней */
+        /* Контейнер для карточек */
         .levels-container {
+            max-width: 600px;
+            margin: 40px auto 80px;
+            padding: 0 20px;
             display: flex;
             flex-direction: column;
-            gap: 30px; /* Расстояние между карточками */
+            gap: 30px;
             position: relative;
-            z-index: 1; /* Поверх линии */
+            z-index: 2; /* Карточки поверх линии */
         }
 
+        /* Карточки */
         .level-card {
             background: #ffffff;
             border: 4px solid #7a9a7e;
@@ -95,88 +95,41 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
         }
-
         .level-card:hover {
-            transform: translateY(-5px) scale(1.02);
+            transform: translateY(-5px);
             box-shadow: 12px 12px 0px rgba(212, 106, 140, 0.3);
             border-color: #d46a8c;
         }
-
         .level-card h2 {
             font-size: 3rem;
             color: #d46a8c;
             margin-bottom: 10px;
             font-family: 'Courier New', Courier, monospace;
         }
-
         .level-card p {
             font-size: 1rem;
             color: #555;
             text-transform: uppercase;
-            letter-spacing: 1px;
         }
-/* Адаптация под телефоны */
-        @media (max-width: 600px) {
-            h1 { font-size: 2rem; }
-            .level-card h2 { font-size: 2.5rem; }
-            .dashed-line { border-left-width: 4px; left: 50%; }
-            .sticker { display: none; }
+
+        /* ТА САМАЯ ВОЛНИСТАЯ ЛИНИЯ (SVG) */
+        .squiggle-svg {
+            position: absolute;
+            top: 28%; /* Высота, на которой она проходит (между B1 и B2) */
+            left: -10%;
+            width: 120%; /* Ширина линии */
+            height: 150px; /* Высота изгиба */
+            z-index: 1; /* Под карточками */
+            pointer-events: none; /* Не мешает нажимать на карточки */
+            transform: rotate(-5deg); /* Легкий наклон, как на твоем фото */
         }
-    </style>
-</head>
-<body>
 
-    <header>
-        <a href="index.html" class="back-btn">← На главную</a>
-        <h1>Vocabulary</h1>
-        <p class="subtitle">Выбери свой уровень и начни учить слова</p>
-    </header>
-
-    <!-- Обертка для карточек и линии -->
-    <div class="content-wrapper">
-        
-        <!-- Вот она, твоя розовая пунктирная линия -->
-        <div class="dashed-line"></div>
-
-        <!-- Карточки уровней -->
-        <section class="levels-container">
-            <a href="#" class="level-card">
-                <h2>A0-A1</h2>
-                <p>Beginner</p>
-            </a>
-            <a href="#" class="level-card">
-                <h2>A2</h2>
-                <p>Elementary</p>
-            </a>
-            <a href="#" class="level-card">
-                <h2>B1</h2>
-                <p>Intermediate</p>
-            </a>
-            <a href="#" class="level-card">
-                <h2>B2</h2>
-                <p>Upper-Intermediate</p>
-            </a>
-            <a href="#" class="level-card">
-                <h2>C1</h2>
-                <p>Advanced</p>
-            </a>
-            <a href="#" class="level-card">
-                <h2>C2</h2>
-                <p>Proficiency</p>
-            </a>
-        </section>
-
-    </div>
-
-    <!-- Стикер -->
-    <div class="sticker">Never give up</div>
-
-</body>
-</html>внизу экрана */
-            bottom: 30px;
-            left: 30px;
+        /* Стикер */
+        .sticker {
+            position: absolute;
+            bottom: 40px;
+            left: 50px;
             font-size: 1.5rem;
             font-weight: bold;
             color: #7a9a7e;
@@ -184,6 +137,50 @@
             border: 2px solid #7a9a7e;
             padding: 10px 20px;
             border-radius: 5px;
-            background: #f9f6f0;
             z-index: 10;
+            background: #f9f6f0;
+        }@media (max-width: 600px) {
+            h1 { font-size: 2rem; }
+            .level-card h2 { font-size: 2.5rem; }
+            .bg-stripe-green { left: 5%; }
+            .bg-stripe-pink { left: 8%; }
+            .squiggle-svg { display: none; }
+            .sticker { display: none; }
         }
+    </style>
+</head>
+<body>
+
+    <!-- Полосы -->
+    <div class="bg-stripe-green"></div>
+    <div class="bg-stripe-pink"></div>
+
+    <header>
+        <a href="index.html" class="back-btn">← На главную</a>
+        <h1>Vocabulary</h1>
+        <p class="subtitle">Выбери свой уровень и начни учить слова</p>
+    </header>
+
+    <!-- Контейнер с карточками -->
+    <section class="levels-container">
+        
+        <!-- Вот она, витиеватая линия. Она лежит ПОД карточками -->
+        <svg class="squiggle-svg" viewBox="0 0 800 150" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Этот код рисует волну с петелькой: вниз-вверх-петелька-вниз -->
+            <path d="M -50 100 C 150 100, 200 20, 350 20 C 450 20, 500 120, 600 120 C 700 120, 750 50, 850 50" 
+                  fill="none" stroke="#e8b4c8" stroke-width="5" stroke-dasharray="12 12" stroke-linecap="round"/>
+        </svg>
+
+        <!-- Карточки -->
+        <a href="#" class="level-card"><h2>A0-A1</h2><p>Beginner</p></a>
+        <a href="#" class="level-card"><h2>A2</h2><p>Elementary</p></a>
+        <a href="#" class="level-card"><h2>B1</h2><p>Intermediate</p></a>
+        <a href="#" class="level-card"><h2>B2</h2><p>Upper-Intermediate</p></a>
+        <a href="#" class="level-card"><h2>C1</h2><p>Advanced</p></a>
+        <a href="#" class="level-card"><h2>C2</h2><p>Proficiency</p></a>
+    </section>
+
+    <div class="sticker">Never give up</div>
+
+</body>
+</html>
