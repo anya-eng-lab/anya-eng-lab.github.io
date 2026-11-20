@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A0-A1 Vocabulary | Anya's IELTS Lab</title>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            background-color: #f9f6f0;
+            color: #2c3e2e;
+            padding: 40px 20px;
+            margin: 0;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .back-btn {
+            display: inline-block;
+            text-decoration: none;
+            color: #d46a8c;
+            font-weight: bold;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            border-bottom: 2px dashed #d46a8c;
+        }
+        h1 { font-size: 2.5rem; color: #2c3e2e; }
+        
+        .word-table {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            border-collapse: collapse;
+            background: #ffffff;
+            box-shadow: 8px 8px 0px rgba(122, 154, 126, 0.2);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        .word-table th, .word-table td {
+            padding: 15px 20px;
+            text-align: left;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        .word-table th {
+            background-color: #7a9a7e;
+            color: white;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+        }
+        .word-table tr:hover {
+            background-color: #fdf5f7;
+        }
+        .word-table td:first-child {
+            font-weight: bold;
+            color: #d46a8c;
+            font-size: 1.2rem;
+        }
+        .transcription {
+            color: #888;
+            font-style: italic;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="vocabulary.html" class="back-btn">← Назад к уровням</a>
+        <h1>A0-A1 Words</h1>
+        <p>Базовые слова для начинающих</p>
+    </header>
+
+    <table class="word-table">
+        <thead>
+            <tr>
+                <th>Слово</th>
+                <th>Транскрипция</th>
+                <th>Перевод</th>
+            </tr>
+        </thead>
+        <tbody id="table-body">
+            <!-- Сюда скрипт будет вставлять слова -->
+        </tbody>
+    </table>
+
+    <!-- ВОТ ЭТОТ СКРИПТ ЧИТАЕТ ФАЙЛ words.json -->
+    <script>
+        fetch('words.json')
+            .then(response => response.json())
+            .then(data => {
+                const tableBody = document.getElementById('table-body');
+                
+                data.forEach(item => {
+                    const row = document.createElement('tr');
+                    
+                    row.innerHTML = 
+                        <td>${item.word}</td>
+                        <td class="transcription">${item.transcription}</td>
+                        <td>${item.translation}</td>
+                    ;
+                    
+                    tableBody.appendChild(row);
+                });
+            })
+            .catch(error => console.error('Ошибка при загрузке слов:', error));
+    </script>
+</body>
+</html>
