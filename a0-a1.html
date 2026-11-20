@@ -1,12 +1,9 @@
-   words.forEach(item => {
-            const row = document.createElement('tr');
-            row.innerHTML = 
+  
                 <td>${item.word}</td>
                 <td class="transcription">${item.transcription}</td>
                 <td>${item.translation}</td>
                 <td class="example">${item.example}</td>
-            ;
-            tableBody.appendChild(row);
+           
         });
     </script>
 </body>
@@ -17,7 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>A0-A1 Vocabulary | Anya's IELTS Lab</title>
     <style>
-        /* Подключаем современный шрифт */
+       
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
 
         body {
@@ -112,7 +109,7 @@
     </table>
 
     <script>
-        // Данные слов. Обрати внимание, я добавила поле "example".
+        
         const words = [
             { 
                 word: "apple", 
