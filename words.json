@@ -1,0 +1,22 @@
+[
+  {
+    "word": "apple",
+    "transcription": "/ˈæp.əl/",
+    "translation": "яблоко"
+  },
+  {
+    "word": "dog",
+    "transcription": "/dɒɡ/",
+    "translation": "собака"
+  },
+  {
+    "word": "book",
+    "transcription": "/bʊk/",
+    "translation": "книга"
+  },
+  {
+    "word": "water",
+    "transcription": "/ˈwɔː.tər/",
+    "translation": "вода"
+  }
+]
