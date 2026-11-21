@@ -1,326 +1,44 @@
-@any:
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>A0-A1 Vocabulary | Anya's IELTS Lab</title>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400&display=swap');
-
-body {
-font-family: 'PT Serif', serif;
-background-color: #2b2b2b; 
-color: #111;
-padding: 40px 20px;
-margin: 0;
-display: flex;
-flex-direction: column;
-align-items: center;
-min-height: 100vh;
-}
-
-.back-btn {
-display: inline-block;
-text-decoration: none;
-color: #d46a8c;
-font-family: sans-serif;
-font-weight: 600;
-margin-bottom: 30px;
-font-size: 1rem;
-border-bottom: 2px dashed #d46a8c;
-}
-
-.paper-container {
-background-color: #f9f6f0;
-width: 100%;
-max-width: 1000px;
-padding: 50px 60px;
-box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-border-radius: 2px;
-margin-bottom: 80px;
-zoom: 1;
-transition: zoom 0.2s ease;
-}
-
-.header-block {
-text-align: left; 
-margin-bottom: 20px;
-}
-
-h1 {
-font-size: 3rem; 
-color: #333;
-margin: 0 0 10px 0;
-font-weight: 700;
-}
-
-.subtitle {
-font-size: 1.05rem;
-color: #666;
-margin: 0;
-font-style: italic;
-max-width: 800px;
-}
-
-.divider {
-border: 0;
-border-top: 1px solid #ccc;
-margin: 0 0 30px 0;
-}
-
-.dictionary-list {
-display: grid;
-grid-template-columns: 1fr;
-gap: 20px 40px;
-}
-
-.word-entry {
-font-size: 1rem;
-line-height: 1.4;
-border-bottom: 1px solid #e0e0e0;
-padding-bottom: 10px;
-user-select: text;
-}
-
-.word-title {
-font-weight: bold;
-color: #d46a8c;
-font-size: 1.1rem;
-}
-
-.word-transcription {
-color: #555;
-font-family: 'Courier New', Courier, monospace;
-font-size: 0.9rem;
-margin-left: 5px;
-}
-
-.word-translation {
-color: #2c3e2e;
-font-weight: bold;
-margin-left: 5px;
-}
-
-.word-example {
-display: block;
-color: #666;
-font-style: italic;
-font-size: 0.9rem;
-margin-top: 3px;
-}
-
-@media (min-width: 768px) {
-.dictionary-list { grid-template-columns: repeat(2, 1fr); }
-}
-@media (min-width: 1024px) {
-.dictionary-list { grid-template-columns: repeat(3, 1fr); }
-}
-
-.zoom-controls {
-position: fixed;
-bottom: 30px;
-right: 30px;
-display: flex;
-gap: 10px;
-z-index: 100;
-}
-
-.zoom-btn {
-background-color: #fff;
-color: #333;
-border: none;
-width: 50px;
-height: 50px;
-border-radius: 50%;
-font-size: 24px;
-font-weight: bold;
-cursor: pointer;
-box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-display: flex;
-align-items: center;
-justify-content: center;
-transition: 0.2s;
-}
-
-.zoom-btn:hover {
-background-color: #f0f0f0;
-transform: scale(1.1);
-}
-</style>
+    <meta charset="UTF-8">
+    <title>Тест словаря</title>
+    <style>
+        body { background-color: #2b2b2b; color: white; font-family: sans-serif; padding: 50px; }
+        .paper { background-color: #f9f6f0; color: #111; padding: 40px; border-radius: 10px; max-width: 800px; margin: 0 auto; }
+        .word { border-bottom: 1px solid #ccc; padding: 10px 0; }
+        .word-title { color: #d46a8c; font-weight: bold; font-size: 20px; }
+    </style>
 </head>
 <body>
 
-<a href="vocabulary.html" class="back-btn">← Назад к уровням</a>
+    <div class="paper">
+        <h1>The A0-A1 3000 Word List</h1>
+        <div id="dictionary-list">Загрузка...</div>
+    </div>
 
-@any:
-<div class="paper-container" id="paper">
+    <script>
+        const words = [
+            { word: "apple", uk: "UK: [ˈæp.əl]", us: "US: [ˈæp.əl]", ru: "яблоко", ex: "I eat an apple every morning." },
+            { word: "water", uk: "UK: [ˈwɔː.tər]", us: "US: [ˈwɑː.t̬ɚ]", ru: "вода", ex: "Can I have a glass of water?" },
+            { word: "bread", uk: "UK: [bred]", us: "US: [bred]", ru: "хлеб", ex: "She buys fresh bread at the bakery." }
+        ];
 
-<div class="header-block">
-<h1>The A0-A1 3000 Word List</h1>
-<p class="subtitle">Words for those who don't know where to start. I collected them from various trusted sources.</p>
-</div>
+        const container = document.getElementById('dictionary-list');
+        container.innerHTML = ''; 
 
-<hr class="divider">
+        words.forEach(item => {
+            const div = document.createElement('div');
+            div.className = 'word';
+            div.innerHTML = 
+                <span class="word-title">${item.word}</span> 
+                <span>${item.uk} | ${item.us}</span> 
+                <b>${item.ru}</b> 
+                <i>${item.ex}</i>
+            ;
+            container.appendChild(div);
+        });
+    </script>
 
-<div class="dictionary-list" id="dictionary-list"></div>
-
-</div>
-
-<div class="zoom-controls">
-<button class="zoom-btn" onclick="zoomOut()">-</button>
-<button class="zoom-btn" onclick="zoomIn()">+</button>
-</div>
-
-<script>
-// ВСЕ СЛОВА ТЕПЕРЬ ЗДЕСЬ
-const dictionaryData = [
-{ word: "apple", trans_uk: "UK: [ˈæp.əl]", trans_us: "US: [ˈæp.əl]", ru: "яблоко", ex: "I eat an apple every morning." },
-{ word: "water", trans_uk: "UK: [ˈwɔː.tər]", trans_us: "US: [ˈwɑː.t̬ɚ]", ru: "вода", ex: "Can I have a glass of water?" },
-{ word: "bread", trans_uk: "UK: [bred]", trans_us: "US: [bred]", ru: "хлеб", ex: "She buys fresh bread at the bakery." },
-{ word: "milk", trans_uk: "UK: [mɪlk]", trans_us: "US: [mɪlk]", ru: "молоко", ex: "The child drinks milk before bed." },
-{ word: "egg", trans_uk: "UK: [eɡ]", trans_us: "US: [eɡ]", ru: "яйцо", ex: "I boiled an egg for breakfast." },
-{ word: "cheese", trans_uk: "UK: [tʃiːz]", trans_us: "US: [tʃiːz]", ru: "сыр", ex: "This cheese tastes very salty." },
-{ word: "meat", trans_uk: "UK: [miːt]", trans_us: "US: [miːt]", ru: "мясо", ex: "He doesn't eat meat on Fridays." },
-{ word: "fish", trans_uk: "UK: [fɪʃ]", trans_us: "US: [fɪʃ]", ru: "рыба", ex: "We had fish for dinner last night." },
-{ word: "rice", trans_uk: "UK: [raɪs]", trans_us: "US: [raɪs]", ru: "рис", ex: "Cook the rice for twenty minutes." },
-{ word: "sugar", trans_uk: "UK: [ˈʃʊɡ.ər]", trans_us: "US: [ˈʃʊɡ.ɚ]", ru: "сахар", ex: "Do you take sugar in your tea?" },
-{ word: "salt", trans_uk: "UK: [sɒlt]", trans_us: "US: [sɑːlt]", ru: "соль", ex: "Add a little salt to the soup." },
-{ word: "fruit", trans_uk: "UK: [fruːt]", trans_us: "US: [fruːt]", ru: "фрукт", ex: "Fruit is good for your health." },
-{ word: "vegetable", trans_uk: "UK: [ˈvedʒ.tə.bəl]", trans_us: "US: [ˈvedʒ.tə.bəl]", ru: "овощ", ex: "Eat more vegetables every day." },
-{ word: "soup", trans_uk: "UK: [suːp]", trans_us: "US: [suːp]", ru: "суп", ex: "The soup is too hot to eat." },
-{ word: "cake", trans_uk: "UK: [keɪk]", trans_us: "US: [keɪk]", ru: "торт", ex: "We baked a cake for her birthday." },
-{ word: "coffee", trans_uk: "UK: [ˈkɒf.i]", trans_us: "US: [ˈkɑː.fi]", ru: "кофе", ex: "He drinks coffee without milk." },
-{ word: "tea", trans_uk: "UK: [tiː]", trans_us: "US: [tiː]", ru: "чай", ex: "Would you like a cup of tea?" },
-{ word: "juice", trans_uk: "UK: [dʒuːs]", trans_us: "US: [dʒuːs]", ru: "сок", ex: "She ordered orange juice." },
-{ word: "breakfast", trans_uk: "UK: [ˈbrek.fəst]", trans_us: "US: [ˈbrek.fəst]", ru: "завтрак", ex: "Breakfast is at seven o'clock." },
-{ word: "lunch", trans_uk: "UK: [lʌntʃ]", trans_us: "US: [lʌntʃ]", ru: "обед", ex: "Let's have lunch together." },
-{ word: "dinner", trans_uk: "UK: [ˈdɪn.ər]", trans_us: "US: [ˈdɪn.ɚ]", ru: "ужин", ex: "Dinner is ready at eight." },
-{ word: "restaurant", trans_uk: "UK: [ˈres.tər.ɒnt]", trans_us: "US: [ˈres.tə.rɑːnt]", ru: "ресторан", ex: "This restaurant serves Italian food." },
-{ word: "menu", trans_uk: "UK: [ˈmen.juː]", trans_us: "US: [ˈmen.juː]", ru: "меню", ex: "Can I see the menu, please?" },
-{ word: "table", trans_uk: "UK: [ˈteɪ.bəl]", trans_us: "US: [ˈteɪ.bəl]", ru: "стол", ex: "We sat at a table near the window." },
-
-@any:
-{ word: "chair", trans_uk: "UK: [tʃeər]", trans_us: "US: [tʃer]", ru: "стул", ex: "Please take a chair." },
-{ word: "plate", trans_uk: "UK: [pleɪt]", trans_us: "US: [pleɪt]", ru: "тарелка", ex: "Put the plates on the table." },
-{ word: "cup", trans_uk: "UK: [kʌp]", trans_us: "US: [kʌp]", ru: "чашка", ex: "She poured tea into a cup." },
-{ word: "knife", trans_uk: "UK: [naɪf]", trans_us: "US: [naɪf]", ru: "нож", ex: "Use a knife to cut the bread." },
-{ word: "fork", trans_uk: "UK: [fɔːk]", trans_us: "US: [fɔːrk]", ru: "вилка", ex: "He ate the salad with a fork." },
-{ word: "spoon", trans_uk: "UK: [spuːn]", trans_us: "US: [spuːn]", ru: "ложка", ex: "Stir the coffee with a spoon." },
-{ word: "mother", trans_uk: "UK: [ˈmʌð.ər]", trans_us: "US: [ˈmʌð.ɚ]", ru: "мать", ex: "My mother works in a hospital." },
-{ word: "father", trans_uk: "UK: [ˈfɑː.ðər]", trans_us: "US: [ˈfɑː.ðɚ]", ru: "отец", ex: "His father drives a bus." },
-{ word: "sister", trans_uk: "UK: [ˈsɪs.tər]", trans_us: "US: [ˈsɪs.tɚ]", ru: "сестра", ex: "My sister is ten years old." },
-{ word: "brother", trans_uk: "UK: [ˈbrʌð.ər]", trans_us: "US: [ˈbrʌð.ɚ]", ru: "брат", ex: "Her brother studies at university." },
-{ word: "son", trans_uk: "UK: [sʌn]", trans_us: "US: [sʌn]", ru: "сын", ex: "Their son plays football." },
-{ word: "daughter", trans_uk: "UK: [ˈdɔː.tər]", trans_us: "US: [ˈdɑː.t̬ɚ]", ru: "дочь", ex: "She has one daughter." },
-{ word: "family", trans_uk: "UK: [ˈfæm.əl.i]", trans_us: "US: [ˈfæm.əl.i]", ru: "семья", ex: "We are a family of five." },
-{ word: "child", trans_uk: "UK: [tʃaɪld]", trans_us: "US: [tʃaɪld]", ru: "ребёнок", ex: "The child is sleeping." },
-{ word: "baby", trans_uk: "UK: [ˈbeɪ.bi]", trans_us: "US: [ˈbeɪ.bi]", ru: "младенец", ex: "The baby is crying." },
-{ word: "man", trans_uk: "UK: [mæn]", trans_us: "US: [mæn]", ru: "мужчина", ex: "A man asked me for directions." },
-{ word: "woman", trans_uk: "UK: [ˈwʊm.ən]", trans_us: "US: [ˈwʊm.ən]", ru: "женщина", ex: "The woman is reading a book." },
-{ word: "boy", trans_uk: "UK: [bɔɪ]", trans_us: "US: [bɔɪ]", ru: "мальчик", ex: "The boy is playing outside." },
-{ word: "girl", trans_uk: "UK: [ɡɜːl]", trans_us: "US: [ɡɜːrl]", ru: "девочка", ex: "The girl has a red bag." },
-{ word: "friend", trans_uk: "UK: [frend]", trans_us: "US: [frend]", ru: "друг", ex: "My friend lives next door." },
-{ word: "people", trans_uk: "UK: [ˈpiː.pəl]", trans_us: "US: [ˈpiː.pəl]", ru: "люди", ex: "Many people came to the party." },
-{ word: "name", trans_uk: "UK: [neɪm]", trans_us: "US: [neɪm]", ru: "имя", ex: "What is your name?" },
-{ word: "home", trans_uk: "UK: [həʊm]", trans_us: "US: [hoʊm]", ru: "дом", ex: "I go home after work." },
-{ word: "house", trans_uk: "UK: [haʊs]", trans_us: "US: [haʊs]", ru: "дом (здание)", ex: "They bought a new house." },
-{ word: "room", trans_uk: "UK: [ruːm]", trans_us: "US: [ruːm]", ru: "комната", ex: "My room is very small." },
-{ word: "door", trans_uk: "UK: [dɔː]", trans_us: "US: [dɔːr]", ru: "дверь", ex: "Please close the door." },
-{ word: "window", trans_uk: "UK: [ˈwɪn.dəʊ]", trans_us: "US: [ˈwɪn.doʊ]", ru: "окно", ex: "Open the window, it's hot." },
-{ word: "bed", trans_uk: "UK: [bed]", trans_us: "US: [bed]", ru: "кровать", ex: "The cat is on the bed." },
-{ word: "kitchen", trans_uk: "UK: [ˈkɪtʃ.ən]", trans_us: "US: [ˈkɪtʃ.ən]", ru: "кухня", ex: "Mum is cooking in the kitchen." },
-{ word: "bathroom", trans_uk: "UK: [ˈbɑːθ.ruːm]", trans_us: "US: [ˈbæθ.ruːm]", ru: "ванная", ex: "The bathroom is upstairs." },
-
-@any:
-{ word: "garden", trans_uk: "UK: [ˈɡɑː.dən]", trans_us: "US: [ˈɡɑːr.dən]", ru: "сад", ex: "There are flowers in the garden." },
-{ word: "floor", trans_uk: "UK: [flɔː]", trans_us: "US: [flɔːr]", ru: "пол", ex: "The book fell on the floor." },
-{ word: "wall", trans_uk: "UK: [wɔːl]", trans_us: "US: [wɑːl]", ru: "стена", ex: "A picture hangs on the wall." },
-{ word: "key", trans_uk: "UK: [kiː]", trans_us: "US: [kiː]", ru: "ключ", ex: "I lost my house key." },
-{ word: "phone", trans_uk: "UK: [fəʊn]", trans_us: "US: [foʊn]", ru: "телефон", ex: "My phone is in my bag." },
-{ word: "bag", trans_uk: "UK: [bæɡ]", trans_us: "US: [bæɡ]", ru: "сумка", ex: "She carries a big bag." },
-{ word: "book", trans_uk: "UK: [bʊk]", trans_us: "US: [bʊk]", ru: "книга", ex: "This book is very interesting." },
-{ word: "pen", trans_uk: "UK: [pen]", trans_us: "US: [pen]", ru: "ручка", ex: "Can I borrow your pen?" },
-{ word: "pencil", trans_uk: "UK: [ˈpen.səl]", trans_us: "US: [ˈpen.səl]", ru: "карандаш", ex: "He writes with a pencil." },
-{ word: "paper", trans_uk: "UK: [ˈpeɪ.pər]", trans_us: "US: [ˈpeɪ.pɚ]", ru: "бумага", ex: "I need a piece of paper." },
-{ word: "money", trans_uk: "UK: [ˈmʌn.i]", trans_us: "US: [ˈmʌn.i]", ru: "деньги", ex: "I don't have enough money." },
-{ word: "shop", trans_uk: "UK: [ʃɒp]", trans_us: "US: [ʃɑːp]", ru: "магазин", ex: "The shop opens at nine." },
-{ word: "price", trans_uk: "UK: [praɪs]", trans_us: "US: [praɪs]", ru: "цена", ex: "The price is too high." },
-{ word: "ticket", trans_uk: "UK: [ˈtɪk.ɪt]", trans_us: "US: [ˈtɪk.ɪt]", ru: "билет", ex: "I bought two tickets for the show." },
-{ word: "go", trans_uk: "UK: [ɡəʊ]", trans_us: "US: [ɡoʊ]", ru: "идти", ex: "We go to school by bus." },
-{ word: "come", trans_uk: "UK: [kʌm]", trans_us: "US: [kʌm]", ru: "приходить", ex: "Please come to my house." },
-{ word: "eat", trans_uk: "UK: [iːt]", trans_us: "US: [iːt]", ru: "есть", ex: "I eat lunch at noon." },
-{ word: "drink", trans_uk: "UK: [drɪŋk]", trans_us: "US: [drɪŋk]", ru: "пить", ex: "Drink some water." },
-{ word: "sleep", trans_uk: "UK: [sliːp]", trans_us: "US: [sliːp]", ru: "спать", ex: "I sleep eight hours a night." },
-{ word: "read", trans_uk: "UK: [riːd]", trans_us: "US: [riːd]", ru: "читать", ex: "She reads a book every evening." },
-{ word: "write", trans_uk: "UK: [raɪt]", trans_us: "US: [raɪt]", ru: "писать", ex: "Write your name here." },
-{ word: "speak", trans_uk: "UK: [spiːk]", trans_us: "US: [spiːk]", ru: "говорить", ex: "Do you speak English?" },
-{ word: "listen", trans_uk: "UK: [ˈlɪs.ən]", trans_us: "US: [ˈlɪs.ən]", ru: "слушать", ex: "Listen to the teacher." },
-{ word: "watch", trans_uk: "UK: [wɒtʃ]", trans_us: "US: [wɑːtʃ]", ru: "смотреть", ex: "We watch TV after dinner." },
-{ word: "work", trans_uk: "UK: [wɜːk]", trans_us: "US: [wɜːrk]", ru: "работать", ex: "I work in an office." },
-{ word: "play", trans_uk: "UK: [pleɪ]", trans_us: "US: [pleɪ]", ru: "играть", ex: "The children play in the park." },
-{ word: "run", trans_uk: "UK: [rʌn]", trans_us: "US: [rʌn]", ru: "бежать", ex: "He runs every morning." },
-{ word: "walk", trans_uk: "UK: [wɔːk]", trans_us: "US: [wɑːk]", ru: "ходить", ex: "We walk to the station." },
-{ word: "open", trans_uk: "UK: [ˈəʊ.pən]", trans_us: "US: [ˈoʊ.pən]", ru: "открывать", ex: "Open your books, please." },
-{ word: "close", trans_uk: "UK: [kləʊz]", trans_us: "US: [kloʊz]", ru: "закрывать", ex: "Close the window, please." },
-{ word: "buy", trans_uk: "UK: [baɪ]", trans_us: "US: [baɪ]", ru: "покупать", ex: "I want to buy a new phone." },
-
-@any:
-{ word: "help", trans_uk: "UK: [help]", trans_us: "US: [help]", ru: "помогать", ex: "Can you help me?" },
-{ word: "like", trans_uk: "UK: [laɪk]", trans_us: "US: [laɪk]", ru: "нравиться", ex: "I like this song." },
-{ word: "love", trans_uk: "UK: [lʌv]", trans_us: "US: [lʌv]", ru: "любить", ex: "They love their dog." },
-{ word: "big", trans_uk: "UK: [bɪɡ]", trans_us: "US: [bɪɡ]", ru: "большой", ex: "They live in a big house." },
-{ word: "small", trans_uk: "UK: [smɔːl]", trans_us: "US: [smɑːl]", ru: "маленький", ex: "She has a small car." },
-{ word: "good", trans_uk: "UK: [ɡʊd]", trans_us: "US: [ɡʊd]", ru: "хороший", ex: "This is a good idea." },
-{ word: "bad", trans_uk: "UK: [bæd]", trans_us: "US: [bæd]", ru: "плохой", ex: "The weather is bad today." },
-{ word: "new", trans_uk: "UK: [njuː]", trans_us: "US: [nuː]", ru: "новый", ex: "I bought a new shirt." },
-{ word: "old", trans_uk: "UK: [əʊld]", trans_us: "US: [oʊld]", ru: "старый", ex: "This is an old building." },
-{ word: "hot", trans_uk: "UK: [hɒt]", trans_us: "US: [hɑːt]", ru: "горячий", ex: "The tea is very hot." },
-{ word: "cold", trans_uk: "UK: [kəʊld]", trans_us: "US: [koʊld]", ru: "холодный", ex: "The water is cold." },
-{ word: "happy", trans_uk: "UK: [ˈhæp.i]", trans_us: "US: [ˈhæp.i]", ru: "счастливый", ex: "She looks happy today." },
-{ word: "sad", trans_uk: "UK: [sæd]", trans_us: "US: [sæd]", ru: "грустный", ex: "He felt sad after the film." },
-{ word: "easy", trans_uk: "UK: [ˈiː.zi]", trans_us: "US: [ˈiː.zi]", ru: "лёгкий", ex: "The test was easy." },
-{ word: "hard", trans_uk: "UK: [hɑːd]", trans_us: "US: [hɑːrd]", ru: "трудный", ex: "This question is hard." },
-{ word: "long", trans_uk: "UK: [lɒŋ]", trans_us: "US: [lɑːŋ]", ru: "длинный", ex: "She has long hair." },
-{ word: "short", trans_uk: "UK: [ʃɔːt]", trans_us: "US: [ʃɔːrt]", ru: "короткий", ex: "It was a short trip." },
-{ word: "red", trans_uk: "UK: [red]", trans_us: "US: [red]", ru: "красный", ex: "She wore a red dress." },
-{ word: "blue", trans_uk: "UK: [bluː]", trans_us: "US: [bluː]", ru: "синий", ex: "The sky is blue." },
-{ word: "green", trans_uk: "UK: [ɡriːn]", trans_us: "US: [ɡriːn]", ru: "зелёный", ex: "The grass is green." },
-{ word: "black", trans_uk: "UK: [blæk]", trans_us: "US: [blæk]", ru: "чёрный", ex: "He has a black cat." },
-{ word: "white", trans_uk: "UK: [waɪt]", trans_us: "US: [waɪt]", ru: "белый", ex: "The walls are white." },
-{ word: "nice", trans_uk: "UK: [naɪs]", trans_us: "US: [naɪs]", ru: "приятный", ex: "That's a nice shirt." }
-];
-
-const container = document.getElementById('dictionary-list');
-
-dictionaryData.forEach(item => {
-const div = document.createElement('div');
-div.className = 'word-entry';
-div.innerHTML = 
-<span class="word-title">${item.word}</span>
-<span class="word-transcription">${item.trans_uk} | ${item.trans_us}</span>
-<span class="word-translation">${item.ru}</span>
-<span class="word-example">${item.ex}</span>
-;
-container.appendChild(div);
-});
-
-const paper = document.getElementById('paper');
-let currentZoom = 1;
-
-function zoomIn() {
-if (currentZoom < 1.5) {
-currentZoom += 0.1;
-paper.style.zoom = currentZoom;
-}
-}
-
-function zoomOut() {
-if (currentZoom > 0.5) {
-currentZoom -= 0.1;
-paper.style.zoom = currentZoom;
-}
-}
-</script>
 </body>
 </html>
