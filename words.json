@@ -1,22 +1,32 @@
 [
   {
-    "word": "apple",
-    "transcription": "/ˈæp.əl/",
-    "translation": "яблоко"
+    "word": "abandon",
+    "transcription": "/əˈbæn.dən/",
+    "translation": "покидать, оставлять",
+    "example": "They had to abandon the car."
   },
   {
-    "word": "dog",
-    "transcription": "/dɒɡ/",
-    "translation": "собака"
+    "word": "ability",
+    "transcription": "/əˈbɪl.ə.ti/",
+    "translation": "способность",
+    "example": "She has the ability to do it."
   },
   {
-    "word": "book",
-    "transcription": "/bʊk/",
-    "translation": "книга"
+    "word": "about",
+    "transcription": "/əˈbaʊt/",
+    "translation": "о, около",
+    "example": "Tell me about your day."
   },
   {
-    "word": "water",
-    "transcription": "/ˈwɔː.tər/",
-    "translation": "вода"
+    "word": "above",
+    "transcription": "/əˈbʌv/",
+    "translation": "над, выше",
+    "example": "The plane flew above the clouds."
+  },
+  {
+    "word": "accept",
+    "transcription": "/əkˈsept/",
+    "translation": "принимать",
+    "example": "I accept your apology."
   }
 ]
