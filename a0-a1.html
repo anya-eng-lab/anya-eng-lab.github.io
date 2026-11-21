@@ -1,20 +1,14 @@
-                <td class="transcription"></td>
-                <td class="example"></td>
-  
-    </script>
-</body>
-</html><!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>A0-A1 Vocabulary | Anya's IELTS Lab</title>
     <style>
-       
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
 
         body {
-            font-family: 'Montserrat', sans-serif; /* Новый шрифт */
+            font-family: 'Montserrat', sans-serif;
             background-color: #f9f6f0;
             color: #2c3e2e;
             padding: 40px 20px;
@@ -32,53 +26,72 @@
             margin-bottom: 20px;
             font-size: 1.1rem;
             border-bottom: 2px dashed #d46a8c;
-            transition: 0.3s;
         }
-        .back-btn:hover { color: #2c3e2e; border-color: #2c3e2e; }
-        
-        h1 { font-size: 2.5rem; color: #2c3e2e; font-weight: 700; }
-        p.subtitle { color: #666; font-weight: 400; }
-        
-       
-        .word-table {
-            width: 100%;
-            max-width: 900px;
+        h1 { font-size: 2.5rem; color: #2c3e2e; font-weight: 700; margin: 0; }
+        p.subtitle { color: #666; font-weight: 400; margin-top: 10px; }
+
+        /* Контейнер для сетки */
+        .word-list {
+            max-width: 1000px;
             margin: 0 auto;
-            border-collapse: collapse;
+            display: grid;
+            grid-template-columns: 1fr; /* На телефоне 1 колонка */
+            gap: 15px;
+        }
+
+        /* Карточка одного слова */
+        .word-item {
             background: #ffffff;
-            box-shadow: 8px 8px 0px rgba(122, 154, 126, 0.2);
-            border-radius: 15px;
-            overflow: hidden;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 4px 4px 0px rgba(122, 154, 126, 0.15);
+            border-left: 5px solid #7a9a7e; /* Зеленая полоска слева */
+            transition: 0.2s;
+            /* Выделение текста при наведении (чтобы удобно копировать) */
+            user-select: text; 
         }
-        .word-table th, .word-table td {
-            padding: 18px 20px;
-            text-align: left;
-            border-bottom: 2px solid #f0f0f0;
+        .word-item:hover {
+            background: #fdf5f7; /* Розовый фон при наведении */
+            border-left-color: #d46a8c;
         }
-        .word-table th {
-            background-color: #7a9a7e;
-            color: white;
-            font-size: 0.95rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 600;
+
+        /* Внутри карточки: слово и транскрипция */
+        .word-header {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            margin-bottom: 10px;
         }
-        .word-table tr:hover {
-            background-color: #fdf5f7;
-        }
-        .word-table td:first-child {
+        .word-title {
+            font-size: 1.4rem;
             font-weight: 700;
             color: #d46a8c;
-            font-size: 1.2rem;
+            margin: 0;
         }
-        .transcription {
+        .word-transcription {
             color: #888;
-            font-size: 0.95rem;
+            font-size: 1rem;
+            font-family: 'Courier New', Courier, monospace;
         }
-        .example {
-            color: #555;
-            font-size: 0.9rem;
+
+        /* Перевод и пример */
+        .word-translation {
+            font-size: 1.1rem;
+            color: #2c3e2e;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .word-example {
+            font-size: 0.95rem;
+            color: #666;
             font-style: italic;
+        }
+
+        /* Делаем 2 колонки на больших экранах */
+        @media (min-width: 800px) {
+            .word-list {
+                grid-template-columns: 1fr 1fr; 
+            }
         }
     </style>
 </head>
@@ -86,51 +99,45 @@
 
     <header>
         <a href="vocabulary.html" class="back-btn">← Назад к уровням</a>
-        <h1>A0-A1 Words</h1>
-        <p class="subtitle">Базовые слова для начинающих</p>
+        <h1>Oxford 3000 (A-C)</h1>
+        <p class="subtitle">Слова для начинающих (нажми на текст, чтобы выделить)</p>
     </header>
 
-    <table class="word-table">
-        <thead>
-            <tr>
-                <th>Слово</th>
-                <th>Транскрипция</th>
-                <th>Перевод</th>
-                <th>Пример (Example)</th>
-            </tr>
-        </thead>
-        <tbody id="table-body">
-            <!-- Сюда скрипт вставит слова -->
-        </tbody>
-    </table>
+    <!-- Сюда будут загружаться слова -->
+    <div class="word-list" id="word-list">
+        <!-- Загрузка... -->
+    </div>
 
     <script>
-        
-        const words = [
-            { 
-                word: "apple", 
-                transcription: "/ˈæp.əl/", 
-                translation: "яблоко", 
-                example: "I eat an apple every day." 
-            },
-            { 
-                word: "dog", 
-                transcription: "/dɒɡ/", 
-                translation: "собака", 
-                example: "My dog is very friendly." 
-            },
-            { 
-                word: "book", 
-                transcription: "/bʊk/", 
-                translation: "книга", 
-                example: "She is reading a book." 
-            },
-            { 
-                word: "water", 
-                transcription: "/ˈwɔː.tər/", 
-                translation: "вода", 
-                example: "Can I have a glass of water?" 
-            }
-        ];
+        // Скрипт, который читает words.json и создает карточки
+        fetch('words.json')
+            .then(response => response.json())
+            .then(data => {
+                const container = document.getElementById('word-list');
+                
+                // Очищаем контейнер
+                container.innerHTML = '';
 
-        const tableBody = document.getElementById('table-body');
+                // Проходимся по каждому слову из JSON
+                data.forEach(item => {
+                    const card = document.createElement('div');
+                    card.className = 'word-item';// Вставляем HTML внутрь карточки
+                    card.innerHTML = 
+                        <div class="word-header">
+                            <h2 class="word-title">${item.word}</h2>
+                            <span class="word-transcription">${item.transcription || ''}</span>
+                        </div>
+                        <div class="word-translation">${item.translation}</div>
+                        <div class="word-example">${item.example}</div>
+                    ;
+                    
+                    container.appendChild(card);
+                });
+            })
+            .catch(error => {
+                console.error('Ошибка:', error);
+                document.getElementById('word-list').innerHTML = '<p>Ошибка загрузки слов. Проверьте words.json</p>';
+            });
+    </script>
+</body>
+</html>
