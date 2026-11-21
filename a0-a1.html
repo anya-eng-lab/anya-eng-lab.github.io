@@ -2,43 +2,129 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Тест словаря</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A0-A1 Vocabulary | Anya's IELTS Lab</title>
     <style>
-        body { background-color: #2b2b2b; color: white; font-family: sans-serif; padding: 50px; }
-        .paper { background-color: #f9f6f0; color: #111; padding: 40px; border-radius: 10px; max-width: 800px; margin: 0 auto; }
-        .word { border-bottom: 1px solid #ccc; padding: 10px 0; }
-        .word-title { color: #d46a8c; font-weight: bold; font-size: 20px; }
+        @import url('https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400&display=swap');
+
+        body {
+            font-family: 'PT Serif', serif;
+            background-color: #2b2b2b; 
+            color: #111;
+            padding: 40px 20px;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .back-btn {
+            display: inline-block;
+            text-decoration: none;
+            color: #d46a8c;
+            font-family: sans-serif;
+            font-weight: 600;
+            margin-bottom: 30px;
+            font-size: 1rem;
+            border-bottom: 2px dashed #d46a8c;
+        }
+
+        .paper-container {
+            background-color: #f9f6f0;
+            width: 100%;
+            max-width: 1000px;
+            padding: 50px 60px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border-radius: 2px;
+            margin-bottom: 80px;
+            zoom: 1;
+            transition: zoom 0.2s ease;
+        }
+
+        .header-block { text-align: left; margin-bottom: 20px; }
+        h1 { font-size: 3rem; color: #333; margin: 0 0 10px 0; font-weight: 700; }
+        .subtitle { font-size: 1.05rem; color: #666; margin: 0; font-style: italic; max-width: 800px; }
+        .divider { border: 0; border-top: 1px solid #ccc; margin: 0 0 30px 0; }
+
+        .dictionary-list {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px 40px;
+        }
+
+        .word-entry {
+            font-size: 1rem;
+            line-height: 1.4;
+            border-bottom: 1px solid #e0e0e0;
+            padding-bottom: 10px;
+        }
+
+        .word-title { font-weight: bold; color: #d46a8c; font-size: 1.1rem; }
+        .word-transcription { color: #555; font-family: 'Courier New', Courier, monospace; font-size: 0.9rem; margin-left: 5px; }
+        .word-translation { color: #2c3e2e; font-weight: bold; margin-left: 5px; }
+        .word-example { display: block; color: #666; font-style: italic; font-size: 0.9rem; margin-top: 3px; }
+
+        @media (min-width: 768px) { .dictionary-list { grid-template-columns: repeat(2, 1fr); } }
+        @media (min-width: 1024px) { .dictionary-list { grid-template-columns: repeat(3, 1fr); } }
+
+        .zoom-controls { position: fixed; bottom: 30px; right: 30px; display: flex; gap: 10px; z-index: 100; }
+        .zoom-btn {
+            background-color: #fff; color: #333; border: none; width: 50px; height: 50px;
+            border-radius: 50%; font-size: 24px; font-weight: bold; cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center;
+        }
     </style>
 </head>
 <body>
 
-    <div class="paper">
-        <h1>The A0-A1 3000 Word List</h1>
-        <div id="dictionary-list">Загрузка...</div>
+    <a href="vocabulary.html" class="back-btn">← Назад к уровням</a>
+
+    <div class="paper-container" id="paper">
+        <div class="header-block">
+            <h1>The A0-A1 3000 Word List</h1>
+            <p class="subtitle">Words for those who don't know where to start. I collected them from various trusted sources.</p>
+        </div>
+        <hr class="divider">
+        <div class="dictionary-list" id="dictionary-list"></div>
+    </div>
+
+    <div class="zoom-controls">
+        <button class="zoom-btn" onclick="zoomOut()">-</button>
+        <button class="zoom-btn" onclick="zoomIn()">+</button>
     </div>
 
     <script>
-        const words = [
+        var words = [
             { word: "apple", uk: "UK: [ˈæp.əl]", us: "US: [ˈæp.əl]", ru: "яблоко", ex: "I eat an apple every morning." },
             { word: "water", uk: "UK: [ˈwɔː.tər]", us: "US: [ˈwɑː.t̬ɚ]", ru: "вода", ex: "Can I have a glass of water?" },
             { word: "bread", uk: "UK: [bred]", us: "US: [bred]", ru: "хлеб", ex: "She buys fresh bread at the bakery." }
-        ];
+        ];var container = document.getElementById('dictionary-list');
+        container.innerHTML = ""; 
 
-        const container = document.getElementById('dictionary-list');
-        container.innerHTML = ''; 
-
-        words.forEach(item => {
-            const div = document.createElement('div');
-            div.className = 'word';
-            div.innerHTML = 
-                <span class="word-title">${item.word}</span> 
-                <span>${item.uk} | ${item.us}</span> 
-                <b>${item.ru}</b> 
-                <i>${item.ex}</i>
-            ;
+        for (var i = 0; i < words.length; i++) {
+            var item = words[i];
+            var div = document.createElement('div');
+            div.className = 'word-entry';
+            
+            var html = '<span class="word-title">' + item.word + '</span>';
+            html += '<span class="word-transcription">' + item.uk + ' | ' + item.us + '</span>';
+            html += '<span class="word-translation">' + item.ru + '</span>';
+            html += '<span class="word-example">' + item.ex + '</span>';
+            
+            div.innerHTML = html;
             container.appendChild(div);
-        });
-    </script>
+        }
 
+        var paper = document.getElementById('paper');
+        var currentZoom = 1;
+
+        function zoomIn() {
+            if (currentZoom < 1.5) { currentZoom += 0.1; paper.style.zoom = currentZoom; }
+        }
+        function zoomOut() {
+            if (currentZoom > 0.5) { currentZoom -= 0.1; paper.style.zoom = currentZoom; }
+        }
+    </script>
 </body>
 </html>
