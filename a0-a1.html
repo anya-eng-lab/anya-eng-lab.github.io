@@ -17,6 +17,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            min-height: 100vh;
         }
 
         /* Кнопка назад */
@@ -31,25 +32,28 @@
             border-bottom: 2px dashed #d46a8c;
         }
 
-        /* "Лист" (сделали поменьше) */
-        .paper-sheet {
+        /* Контейнер для листа с возможностью зума */
+        .paper-container {
             background-color: #f9f6f0;
             width: 100%;
-            max-width: 1000px; /* Уменьшили ширину с 1200 до 1000 */
-            padding: 40px 50px; /* Чуть уменьшили отступы */
+            max-width: 1000px; /* Ширина листа */
+            padding: 50px 60px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             border-radius: 2px;
+            margin-bottom: 80px; /* Место для кнопок внизу */
+            /* Начальный масштаб */
+            zoom: 1;
+            transition: zoom 0.2s ease;
+        }
+
+        /* Заголовки (выровнены влево) */
+        .header-block {
+            text-align: left; 
             margin-bottom: 20px;
         }
 
-        /* Заголовки */
-        .header-block {
-            text-align: center; /* Центрируем заголовок */
-            margin-bottom: 30px;
-        }
-
         h1 {
-            font-size: 2.8rem; /* Сделали шрифт больше */
+            font-size: 3rem; 
             color: #333;
             margin: 0 0 10px 0;
             font-weight: 700;
@@ -60,12 +64,13 @@
             color: #666;
             margin: 0;
             font-style: italic;
+            max-width: 800px;
         }
 
         /* Тонкая линия-разделитель */
         .divider {
             border: 0;
-            border-top: 1px solid #ccc; /* Тонкая серая линия */
+            border-top: 1px solid #ccc;
             margin: 0 0 30px 0;
         }
 
@@ -76,7 +81,6 @@
             gap: 20px 40px;
         }
 
-        /* Блок одного слова */
         .word-entry {
             font-size: 1rem;
             line-height: 1.4;
@@ -114,14 +118,40 @@
 
         /* Колонки на больших экранах */
         @media (min-width: 768px) {
-            .dictionary-list {
-                grid-template-columns: repeat(2, 1fr);
-            }
+            .dictionary-list { grid-template-columns: repeat(2, 1fr); }
         }
         @media (min-width: 1024px) {
-            .dictionary-list {
-                grid-template-columns: repeat(3, 1fr);
-            }
+            .dictionary-list { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        /* Кнопки зума внизу справа */
+        .zoom-controls {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            gap: 10px;
+            z-index: 100;
+        }
+
+        .zoom-btn {
+            background-color: #fff;
+            color: #333;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.2s;
+        }.zoom-btn:hover {
+            background-color: #f0f0f0;
+            transform: scale(1.1);
         }
     </style>
 </head>
@@ -129,16 +159,16 @@
 
     <a href="vocabulary.html" class="back-btn">← Назад к уровням</a>
 
-    <!-- Сам "лист" -->
-    <div class="paper-sheet">
+    <!-- Контейнер, который мы будем увеличивать -->
+    <div class="paper-container" id="paper">
         
         <div class="header-block">
-            <h1>The A0-A1 Word List</h1>
+            <h1>The A0-A1 3000 Word List</h1>
             <p class="subtitle">Words for those who don't know where to start. I collected them from various trusted sources.</p>
         </div>
 
-        <!-- Та самая линия -->
-        <hr class="divider"><!-- Сетка колонок -->
+        <hr class="divider">
+
         <div class="dictionary-list">
             
             <div class="word-entry">
@@ -207,5 +237,28 @@
         </div>
     </div>
 
+    <!-- Кнопки зума -->
+    <div class="zoom-controls">
+        <button class="zoom-btn" onclick="zoomOut()">-</button>
+        <button class="zoom-btn" onclick="zoomIn()">+</button>
+    </div>
+
+    <script>
+        // Скрипт для кнопок зума
+        const paper = document.getElementById('paper');
+        let currentZoom = 1;
+
+        function zoomIn() {
+            if (currentZoom < 1.5) { // Максимальное увеличение 150%
+                currentZoom += 0.1;
+                paper.style.zoom = currentZoom;
+            }
+        }function zoomOut() {
+            if (currentZoom > 0.5) { // Минимальное уменьшение 50%
+                currentZoom -= 0.1;
+                paper.style.zoom = currentZoom;
+            }
+        }
+    </script>
 </body>
 </html>
