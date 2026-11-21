@@ -7,7 +7,6 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400&display=swap');
 
-        /* Темный фон вокруг */
         body {
             font-family: 'PT Serif', serif;
             background-color: #2b2b2b; 
@@ -20,7 +19,6 @@
             min-height: 100vh;
         }
 
-        /* Кнопка назад */
         .back-btn {
             display: inline-block;
             text-decoration: none;
@@ -32,21 +30,18 @@
             border-bottom: 2px dashed #d46a8c;
         }
 
-        /* Контейнер для листа с возможностью зума */
         .paper-container {
             background-color: #f9f6f0;
             width: 100%;
-            max-width: 1000px; /* Ширина листа */
+            max-width: 1000px;
             padding: 50px 60px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             border-radius: 2px;
-            margin-bottom: 80px; /* Место для кнопок внизу */
-            /* Начальный масштаб */
+            margin-bottom: 80px;
             zoom: 1;
             transition: zoom 0.2s ease;
         }
 
-        /* Заголовки (выровнены влево) */
         .header-block {
             text-align: left; 
             margin-bottom: 20px;
@@ -67,14 +62,12 @@
             max-width: 800px;
         }
 
-        /* Тонкая линия-разделитель */
         .divider {
             border: 0;
             border-top: 1px solid #ccc;
             margin: 0 0 30px 0;
         }
 
-        /* Сетка для слов */
         .dictionary-list {
             display: grid;
             grid-template-columns: 1fr;
@@ -116,7 +109,6 @@
             margin-top: 3px;
         }
 
-        /* Колонки на больших экранах */
         @media (min-width: 768px) {
             .dictionary-list { grid-template-columns: repeat(2, 1fr); }
         }
@@ -124,7 +116,6 @@
             .dictionary-list { grid-template-columns: repeat(3, 1fr); }
         }
 
-        /* Кнопки зума внизу справа */
         .zoom-controls {
             position: fixed;
             bottom: 30px;
@@ -149,7 +140,9 @@
             align-items: center;
             justify-content: center;
             transition: 0.2s;
-        }.zoom-btn:hover {
+        }
+
+        .zoom-btn:hover {
             background-color: #f0f0f0;
             transform: scale(1.1);
         }
@@ -157,10 +150,7 @@
 </head>
 <body>
 
-    <a href="vocabulary.html" class="back-btn">← Назад к уровням</a>
-
-    <!-- Контейнер, который мы будем увеличивать -->
-    <div class="paper-container" id="paper">
+    <a href="vocabulary.html" class="back-btn">← Назад к уровням</a><div class="paper-container" id="paper">
         
         <div class="header-block">
             <h1>The A0-A1 3000 Word List</h1>
@@ -169,31 +159,44 @@
 
         <hr class="divider">
 
-        <div class="dictionary-list">
-            const dictionaryData = [];
-          
+        <div class="dictionary-list" id="dictionary-list"></div>
 
-        </div>
     </div>
 
-    <!-- Кнопки зума -->
     <div class="zoom-controls">
         <button class="zoom-btn" onclick="zoomOut()">-</button>
         <button class="zoom-btn" onclick="zoomIn()">+</button>
     </div>
 
+    <script src="words.js"></script>
+
     <script>
-        // Скрипт для кнопок зума
+        const container = document.getElementById('dictionary-list');
+        
+        dictionaryData.forEach(item => {
+            const div = document.createElement('div');
+            div.className = 'word-entry';
+            div.innerHTML = 
+                <span class="word-title">${item.word}</span>
+                <span class="word-transcription">${item.trans_uk} | ${item.trans_us}</span>
+                <span class="word-translation">${item.ru}</span>
+                <span class="word-example">${item.ex}</span>
+            ;
+            container.appendChild(div);
+        });
+
         const paper = document.getElementById('paper');
         let currentZoom = 1;
 
         function zoomIn() {
-            if (currentZoom < 1.5) { // Максимальное увеличение 150%
+            if (currentZoom < 1.5) {
                 currentZoom += 0.1;
                 paper.style.zoom = currentZoom;
             }
-        }function zoomOut() {
-            if (currentZoom > 0.5) { // Минимальное уменьшение 50%
+        }
+
+        function zoomOut() {
+            if (currentZoom > 0.5) {
                 currentZoom -= 0.1;
                 paper.style.zoom = currentZoom;
             }
