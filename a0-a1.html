@@ -10,7 +10,7 @@
         /* Темный фон вокруг */
         body {
             font-family: 'PT Serif', serif;
-            background-color: #2b2b2b; /* Темно-серый фон */
+            background-color: #2b2b2b; 
             color: #111;
             padding: 40px 20px;
             margin: 0;
@@ -31,51 +31,63 @@
             border-bottom: 2px dashed #d46a8c;
         }
 
-        /* "Лист А4" */
+        /* "Лист" (сделали поменьше) */
         .paper-sheet {
-            background-color: #f9f6f0; /* Цвет бумаги */
+            background-color: #f9f6f0;
             width: 100%;
-            max-width: 1200px;
-            min-height: 100vh; /* Высота как лист */
-            padding: 50px 40px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5); /* Тень, чтобы выглядело как лист */
+            max-width: 1000px; /* Уменьшили ширину с 1200 до 1000 */
+            padding: 40px 50px; /* Чуть уменьшили отступы */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             border-radius: 2px;
             margin-bottom: 20px;
         }
 
+        /* Заголовки */
+        .header-block {
+            text-align: center; /* Центрируем заголовок */
+            margin-bottom: 30px;
+        }
+
         h1 {
-            font-size: 2rem;
+            font-size: 2.8rem; /* Сделали шрифт больше */
             color: #333;
-            margin-bottom: 5px;
-            text-align: left;
+            margin: 0 0 10px 0;
+            font-weight: 700;
         }
 
         .subtitle {
-            font-size: 1rem;
+            font-size: 1.05rem;
             color: #666;
-            margin-bottom: 30px;
+            margin: 0;
             font-style: italic;
         }
 
-        /* Сетка для слов (как колонки в словаре) */
+        /* Тонкая линия-разделитель */
+        .divider {
+            border: 0;
+            border-top: 1px solid #ccc; /* Тонкая серая линия */
+            margin: 0 0 30px 0;
+        }
+
+        /* Сетка для слов */
         .dictionary-list {
             display: grid;
-            grid-template-columns: 1fr; /* На телефоне 1 колонка */
-            gap: 20px 40px; /* Отступы между строками и колонками */
+            grid-template-columns: 1fr;
+            gap: 20px 40px;
         }
 
         /* Блок одного слова */
         .word-entry {
             font-size: 1rem;
             line-height: 1.4;
-            border-bottom: 1px solid #ddd; /* Тонкая линия между словами */
+            border-bottom: 1px solid #e0e0e0;
             padding-bottom: 10px;
             user-select: text;
         }
 
         .word-title {
             font-weight: bold;
-            color: #d46a8c; /* Розовый для слова */
+            color: #d46a8c;
             font-size: 1.1rem;
         }
 
@@ -100,15 +112,15 @@
             margin-top: 3px;
         }
 
-        /* На больших экранах делаем 2 или 3 колонки */
+        /* Колонки на больших экранах */
         @media (min-width: 768px) {
             .dictionary-list {
-                grid-template-columns: repeat(2, 1fr); /* 2 колонки */
+                grid-template-columns: repeat(2, 1fr);
             }
         }
         @media (min-width: 1024px) {
             .dictionary-list {
-                grid-template-columns: repeat(3, 1fr); /* 3 колонки */
+                grid-template-columns: repeat(3, 1fr);
             }
         }
     </style>
@@ -120,19 +132,22 @@
     <!-- Сам "лист" -->
     <div class="paper-sheet">
         
-        <h1>The A0-A1 Word List</h1>
-        <p class="subtitle">Слова для начинающих (скопировано из нашей базы)</p>
+        <div class="header-block">
+            <h1>The A0-A1 Word List</h1>
+            <p class="subtitle">Words for those who don't know where to start. I collected them from various trusted sources.</p>
+        </div>
 
-        <!-- Сетка колонок -->
+        <!-- Та самая линия -->
+        <hr class="divider"><!-- Сетка колонок -->
         <div class="dictionary-list">
             
-            <!-- Слово 1 -->
             <div class="word-entry">
                 <span class="word-title">abandon</span>
                 <span class="word-transcription">/əˈbæn.dən/</span>
                 <span class="word-translation">покидать, оставлять</span>
                 <span class="word-example">They had to abandon the car.</span>
-            </div><!-- Слово 2 -->
+            </div>
+
             <div class="word-entry">
                 <span class="word-title">ability</span>
                 <span class="word-transcription">/əˈbɪl.ə.ti/</span>
@@ -140,7 +155,6 @@
                 <span class="word-example">She has the ability to do it.</span>
             </div>
 
-            <!-- Слово 3 -->
             <div class="word-entry">
                 <span class="word-title">about</span>
                 <span class="word-transcription">/əˈbaʊt/</span>
@@ -148,7 +162,6 @@
                 <span class="word-example">Tell me about your day.</span>
             </div>
 
-            <!-- Слово 4 -->
             <div class="word-entry">
                 <span class="word-title">above</span>
                 <span class="word-transcription">/əˈbʌv/</span>
@@ -156,7 +169,6 @@
                 <span class="word-example">The plane flew above the clouds.</span>
             </div>
 
-            <!-- Слово 5 -->
             <div class="word-entry">
                 <span class="word-title">accept</span>
                 <span class="word-transcription">/əkˈsept/</span>
@@ -164,7 +176,6 @@
                 <span class="word-example">I accept your apology.</span>
             </div>
 
-            <!-- Слово 6 -->
             <div class="word-entry">
                 <span class="word-title">accident</span>
                 <span class="word-transcription">/ˈæk.sɪ.dənt/</span>
@@ -172,7 +183,6 @@
                 <span class="word-example">It was an accident.</span>
             </div>
 
-            <!-- Слово 7 -->
             <div class="word-entry">
                 <span class="word-title">across</span>
                 <span class="word-transcription">/əˈkrɒs/</span>
@@ -180,7 +190,6 @@
                 <span class="word-example">We walked across the street.</span>
             </div>
 
-            <!-- Слово 8 -->
             <div class="word-entry">
                 <span class="word-title">action</span>
                 <span class="word-transcription">/ˈæk.ʃən/</span>
@@ -188,7 +197,6 @@
                 <span class="word-example">We need to take action.</span>
             </div>
 
-            <!-- Слово 9 -->
             <div class="word-entry">
                 <span class="word-title">active</span>
                 <span class="word-transcription">/ˈæk.tɪv/</span>
