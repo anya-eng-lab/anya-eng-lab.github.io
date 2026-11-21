@@ -1,143 +1,64 @@
-    <!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A0-A1 Vocabulary | Anya's IELTS Lab</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+<!-- СЛОВО 2 -->
+        <div class="word-item">
+            <div class="word-top">
+                <h2 class="word-title">ability</h2>
+                <span class="word-transcription">/əˈbɪl.ə.ti/</span>
+            </div>
+            <div class="word-bottom">
+                <div class="word-translation">способность</div>
+                <div class="word-example">She has the ability to do it.</div>
+            </div>
+        </div>
 
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: #f9f6f0;
-            color: #2c3e2e;
-            padding: 40px 20px;
-            margin: 0;
-        }
-        header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-        .back-btn {
-            display: inline-block;
-            text-decoration: none;
-            color: #d46a8c;
-            font-weight: 600;
-            margin-bottom: 20px;
-            font-size: 1.1rem;
-            border-bottom: 2px dashed #d46a8c;
-        }
-        h1 { font-size: 2.5rem; color: #2c3e2e; font-weight: 700; margin: 0; }
-        p.subtitle { color: #666; font-weight: 400; margin-top: 10px; }
+        <!-- СЛОВО 3 -->
+        <div class="word-item">
+            <div class="word-top">
+                <h2 class="word-title">about</h2>
+                <span class="word-transcription">/əˈbaʊt/</span>
+            </div>
+            <div class="word-bottom">
+                <div class="word-translation">о, около</div>
+                <div class="word-example">Tell me about your day.</div>
+            </div>
+        </div>
 
-        /* Контейнер для сетки */
-        .word-list {
-            max-width: 1000px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr; /* На телефоне 1 колонка */
-            gap: 15px;
-        }
+        <!-- СЛОВО 4 -->
+        <div class="word-item">
+            <div class="word-top">
+                <h2 class="word-title">above</h2>
+                <span class="word-transcription">/əˈbʌv/</span>
+            </div>
+            <div class="word-bottom">
+                <div class="word-translation">над, выше</div>
+                <div class="word-example">The plane flew above the clouds.</div>
+            </div>
+        </div>
 
-        /* Карточка одного слова */
-        .word-item {
-            background: #ffffff;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 4px 4px 0px rgba(122, 154, 126, 0.15);
-            border-left: 5px solid #7a9a7e; /* Зеленая полоска слева */
-            transition: 0.2s;
-            /* Выделение текста при наведении (чтобы удобно копировать) */
-            user-select: text; 
-        }
-        .word-item:hover {
-            background: #fdf5f7; /* Розовый фон при наведении */
-            border-left-color: #d46a8c;
-        }
+        <!-- СЛОВО 5 -->
+        <div class="word-item">
+            <div class="word-top">
+                <h2 class="word-title">accept</h2>
+                <span class="word-transcription">/əkˈsept/</span>
+            </div>
+            <div class="word-bottom">
+                <div class="word-translation">принимать</div>
+                <div class="word-example">I accept your apology.</div>
+            </div>
+        </div>
 
-        /* Внутри карточки: слово и транскрипция */
-        .word-header {
-            display: flex;
-            align-items: baseline;
-            gap: 10px;
-            margin-bottom: 10px;
-        }
-        .word-title {
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: #d46a8c;
-            margin: 0;
-        }
-        .word-transcription {
-            color: #888;
-            font-size: 1rem;
-            font-family: 'Courier New', Courier, monospace;
-        }
+        <!-- СЛОВО 6 -->
+        <div class="word-item">
+            <div class="word-top">
+                <h2 class="word-title">accident</h2>
+                <span class="word-transcription">/ˈæk.sɪ.dənt/</span>
+            </div>
+            <div class="word-bottom">
+                <div class="word-translation">авария, случай</div>
+                <div class="word-example">It was an accident.</div>
+            </div>
+        </div>
 
-        /* Перевод и пример */
-        .word-translation {
-            font-size: 1.1rem;
-            color: #2c3e2e;
-            margin-bottom: 8px;
-            font-weight: 600;
-        }
-        .word-example {
-            font-size: 0.95rem;
-            color: #666;
-            font-style: italic;
-        }
-
-        /* Делаем 2 колонки на больших экранах */
-        @media (min-width: 800px) {
-            .word-list {
-                grid-template-columns: 1fr 1fr; 
-            }
-        }
-    </style>
-</head>
-<body>
-
-    <header>
-        <a href="vocabulary.html" class="back-btn">← Назад к уровням</a>
-        <h1>Oxford 3000 (A-C)</h1>
-        <p class="subtitle">Слова для начинающих (нажми на текст, чтобы выделить)</p>
-    </header>
-
-    <!-- Сюда будут загружаться слова -->
-    <div class="word-list" id="word-list">
-        <!-- Загрузка... -->
     </div>
 
-    <script>
-        // Скрипт, который читает words.json и создает карточки
-        fetch('words.json')
-            .then(response => response.json())
-            .then(data => {
-                const container = document.getElementById('word-list');
-                
-                // Очищаем контейнер
-                container.innerHTML = '';
-
-                // Проходимся по каждому слову из JSON
-                data.forEach(item => {
-                    const card = document.createElement('div');
-                    card.className = 'word-item';// Вставляем HTML внутрь карточки
-                    card.innerHTML = 
-                        <div class="word-header">
-                            <h2 class="word-title">${item.word}</h2>
-                            <span class="word-transcription">${item.transcription || ''}</span>
-                        </div>
-                        <div class="word-translation">${item.translation}</div>
-                        <div class="word-example">${item.example}</div>
-                    ;
-                    
-                    container.appendChild(card);
-                });
-            })
-            .catch(error => {
-                console.error('Ошибка:', error);
-                document.getElementById('word-list').innerHTML = '<p>Ошибка загрузки слов. Проверьте words.json</p>';
-            });
-    </script>
 </body>
 </html>
