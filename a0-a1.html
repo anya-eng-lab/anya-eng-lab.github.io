@@ -678,6 +678,17 @@
 
         var container = document.getElementById('dictionary-list');
         container.innerHTML = ""; 
+        // --- ФИЛЬТР ДУБЛИКАТОВ ---
+var uniqueWords = [];
+var seen = new Set();
+for (var i = 0; i < words.length; i++) {
+    if (!seen.has(words[i].word)) {
+        seen.add(words[i].word);
+        uniqueWords.push(words[i]);
+    }
+}
+words = uniqueWords; // Заменяем старый список на очищенный
+// --------------------------
 
         for (var i = 0; i < words.length; i++) {
             var item = words[i];
