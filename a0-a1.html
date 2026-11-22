@@ -65,8 +65,8 @@
         .word-translation { color: #2c3e2e; font-weight: bold; margin-left: 5px; }
         .word-example { display: block; color: #666; font-style: italic; font-size: 0.9rem; margin-top: 3px; }
 
-        @media (min-width: 768px) { .dictionary-list { grid-template-columns: repeat(2, 1fr); } }
-        @media (min-width: 1024px) { .dictionary-list { grid-template-columns: repeat(3, 1fr); } }
+       @media (min-width: 768px) { .dictionary-list { grid-template-columns: repeat(2, 1fr); } }
+       @media (min-width: 1100px) { .dictionary-list { grid-template-columns: repeat(4, 1fr); } }
 
         .zoom-controls { position: fixed; bottom: 30px; right: 30px; display: flex; gap: 10px; z-index: 100; }
         .zoom-btn {
@@ -86,7 +86,20 @@
             <p class="subtitle">Words for those who don't know where to start. I collected them from various trusted sources.</p>
         </div>
         <hr class="divider">
-        <div class="dictionary-list" id="dictionary-list"></div>
+       <!-- ПЕРВЫЙ ЛИСТ -->
+<div class="paper-container" id="paper">
+    <div class="header-block">
+        <h1>The A0-A1 3000 Word List</h1>
+        <p class="subtitle">Words for those who don't know where to start. I collected them from various trusted sources.</p>
+    </div>
+    <hr class="divider">
+    <div class="dictionary-list" id="list-part-1"></div>
+</div>
+
+<!-- ВТОРОЙ ЛИСТ -->
+<div class="paper-container">
+    <div class="dictionary-list" id="list-part-2"></div>
+</div>
     </div>
 
     <div class="zoom-controls">
