@@ -37,7 +37,7 @@
             padding: 50px 60px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             border-radius: 2px;
-            margin-bottom: 80px;
+            margin-bottom: 40px;
             zoom: 1;
             transition: zoom 0.2s ease;
         }
@@ -86,7 +86,8 @@
             <p class="subtitle">Words for those who don't know where to start. I collected them from various trusted sources.</p>
         </div>
         <hr class="divider">
-        <div class="dictionary-list" id="dictionary-list"></div>
+       <div class="paper-container" style="margin-bottom: 40px;"><div class="dictionary-list" id="list1"></div></div>
+<div class="paper-container"><div class="dictionary-list" id="list2"></div></div>
     </div>
 
     <div class="zoom-controls">
@@ -676,19 +677,23 @@
 { word: "goodbye", uk: "UK: [ɡʊdˈbaɪ]", us: "US: [ɡʊdˈbaɪ]", ru: "до свидания", ex: "Goodbye, see you tomorrow." }
         ];
 
-        var container = document.getElementById('dictionary-list');
-        container.innerHTML = ""; 
-        // --- ФИЛЬТР ДУБЛИКАТОВ ---
-var uniqueWords = [];
-var seen = new Set();
-for (var i = 0; i < words.length; i++) {
-    if (!seen.has(words[i].word)) {
-        seen.add(words[i].word);
-        uniqueWords.push(words[i]);
-    }
-}
+        
 words = uniqueWords; // Заменяем старый список на очищенный
-// --------------------------
+
+    function draw(arr, id) {
+        var c = document.getElementById(id);
+        arr.forEach(function(item) {
+            var d = document.createElement('div');
+            d.className = 'word-entry';
+            d.innerHTML = '<span class="word-title">' + item.word + '</span><span class="word-transcription">' + item.uk + ' | ' + item.us + '</span><span class="word-translation">' + item.ru + '</span><span class="word-example">' + item.ex + '</span>';
+            c.appendChild(d);
+        });
+    }
+
+    var mid = Math.ceil(words.length / 2);
+    draw(words.slice(0, mid), 'list1');
+    draw(words.slice(mid), 'list2');
+</script>// --------------------------
 
         for (var i = 0; i < words.length; i++) {
             var item = words[i];
