@@ -5,6 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vocabulary | Anya's IELTS Lab</title>
     <style>
+        .side-img {
+    position: absolute;
+    width: 150px; /* Размер картинок, можешь поменять */
+    border-radius: 15px; /* Скругленные углы */
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.2); /* Легкая тень */
+    z-index: 10;
+}
+
+/* Позиция для каждой картинки (напротив определенного уровня) */
+.img-1 { right: 5%; top: 10%; }
+.img-2 { right: 8%; top: 35%; }
+.img-3 { right: 4%; top: 60%; }
+.img-4 { right: 7%; top: 85%; }
+        
         * {
             box-sizing: border-box;
             margin: 0;
@@ -147,6 +161,7 @@
             .bg-stripe-pink { left: 8%; }
             .squiggle-svg { display: none; }
             .sticker { display: none; }
+            .side-img { display: none; }
         }
     </style>
 </head>
@@ -177,6 +192,10 @@
         <a href="#" class="level-card"><h2>B2</h2><p>Upper-Intermediate</p></a>
         <a href="#" class="level-card"><h2>C1</h2><p>Advanced</p></a>
         <a href="#" class="level-card"><h2>C2</h2><p>Proficiency</p></a>
+        <img src="pic1.jpg" class="side-img img-1" alt="cute">
+<img src="pic2.jpg" class="side-img img-2" alt="cute">
+<img src="pic3.jpg" class="side-img img-3" alt="cute">
+<img src="pic4.jpg" class="side-img img-4" alt="cute">
     </section>
 
     <div class="sticker">Never give up</div>
