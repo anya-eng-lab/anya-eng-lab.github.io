@@ -13,10 +13,32 @@
     z-index: 10;
     right:10px
 }
-.img-1 { top: 20%; }  /* Ягненок наверху */
-.img-2 { top: 40%; }  /* Енот */
-.img-3 { top: 60%; }  /* Летящий ягненок */
-.img-4 { top: 80%; }  /* Собака с цветком */
+/* Контейнер, который держит кнопки и картинки рядом */
+.main-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 40px; /* Расстояние между кнопками и картинками */
+    align-items: flex-start;
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+}
+
+/* Настройки самой картинки */
+.side-img {
+    width: 120px;
+    border-radius: 15px;
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.2);
+    margin-bottom: 20px; /* Отступ между картинками */
+}
+
+/* Колонка для картинок */
+.images-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px; /* Чуть опускаем картинки вниз */
+}
         * {
             box-sizing: border-box;
             margin: 0;
@@ -191,6 +213,15 @@
         <a href="#" class="level-card"><h2>C1</h2><p>Advanced</p></a>
         <a href="#" class="level-card"><h2>C2</h2><p>Proficiency</p></a>
         <img src="pic1.jpg" class="side-img img-1" alt="cute">
+        </section>
+
+    <!-- Новая колонка с картинками (ставим ПОСЛЕ секции с кнопками) -->
+    <div class="images-column">
+        <img src="pic1.jpg" class="side-img" alt="cute">
+        <img src="pic2.jpg" class="side-img" alt="cute">
+        <img src="pic3.jpg" class="side-img" alt="cute">
+        <img src="pic4.jpg" class="side-img" alt="cute">
+    </div>
 <img src="pic1.jpg" class="side-img img-1" alt="cute">
 <img src="pic2.jpg" class="side-img img-2" alt="cute">
 <img src="pic3.jpg" class="side-img img-3" alt="cute">
