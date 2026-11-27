@@ -86,8 +86,7 @@
             <p class="subtitle">Words for those who don't know where to start. I collected them from various trusted sources.</p>
         </div>
         <hr class="divider">
-       <div class="paper-container" style="margin-bottom: 40px;"><div class="dictionary-list" id="list1"></div></div>
-<div class="paper-container"><div class="dictionary-list" id="list2"></div></div>
+      <div class="dictionary-list" id="dictionary-list"></div>
     </div>
 
     <div class="zoom-controls">
@@ -690,9 +689,7 @@ words = uniqueWords; // Заменяем старый список на очищ
         });
     }
 
-    var mid = Math.ceil(words.length / 2);
-    draw(words.slice(0, mid), 'list1');
-    draw(words.slice(mid), 'list2');
+   draw(words, 'dictionary-list');
 </script>// --------------------------
 
         for (var i = 0; i < words.length; i++) {
