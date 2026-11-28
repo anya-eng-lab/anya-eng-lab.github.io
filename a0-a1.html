@@ -676,84 +676,26 @@
 { word: "goodbye", uk: "UK: [ɡʊdˈbaɪ]", us: "US: [ɡʊdˈbaɪ]", ru: "до свидания", ex: "Goodbye, see you tomorrow." }
         ];
 
-        
-words = uniqueWords; // Заменяем старый список на очищенный
-
-    function draw(arr, id) {
-        var c = document.getElementById(id);
-        arr.forEach(function(item) {
-            var d = document.createElement('div');
-            d.className = 'word-entry';
-            d.innerHTML = '<span class="word-title">' + item.word + '</span><span class="word-transcription">' + item.uk + ' | ' + item.us + '</span><span class="word-translation">' + item.ru + '</span><span class="word-example">' + item.ex + '</span>';
-            c.appendChild(d);
-        });
-    }
-
-   draw(words, 'dictionary-list');
-
+    var container = document.getElementById('dictionary-list');
+    if (container) {
+        container.innerHTML = "";
         for (var i = 0; i < words.length; i++) {
             var item = words[i];
             var div = document.createElement('div');
             div.className = 'word-entry';
-            
             var html = '<span class="word-title">' + item.word + '</span>';
             html += '<span class="word-transcription">' + item.uk + ' | ' + item.us + '</span>';
             html += '<span class="word-translation">' + item.ru + '</span>';
             html += '<span class="word-example">' + item.ex + '</span>';
-            
             div.innerHTML = html;
             container.appendChild(div);
         }
-
-        var paper = document.getElementById('paper');
-        var currentZoom = 1;
-
-        function zoomIn() {
-            if (currentZoom < 1.5) { currentZoom += 0.1; paper.style.zoom = currentZoom; }
-        }
-        function zoomOut() {
-            if (currentZoom > 0.5) { currentZoom -= 0.1; paper.style.zoom = currentZoom; }
-        }
-  var container = document.getElementById('dictionary-list');
-container.innerHTML = ""; 
-
-for (var i = 0; i < words.length; i++) {
-    var item = words[i];
-    var div = document.createElement('div');
-    div.className = 'word-entry';
-    
-    var html = '<span class="word-title">' + item.word + '</span>';
-    html += '<span class="word-transcription">' + item.uk + ' | ' + item.us + '</span>';
-    html += '<span class="word-translation">' + item.ru + '</span>';
-    html += '<span class="word-example">' + item.ex + '</span>';
-    
-    div.innerHTML = html;
-    container.appendChild(div);
-}
-
-var paper = document.getElementById('paper');
-var currentZoom = 1;
-
-function zoomIn() {
-    if (currentZoom < 1.5) { currentZoom += 0.1; paper.style.zoom = currentZoom; }
-}
-function zoomOut() {
-    if (currentZoom > 0.5) { currentZoom -= 0.1; paper.style.zoom = currentZoom; }
-}
-   var container = document.getElementById('dictionary-list');
-if (container) {
-    container.innerHTML = "";
-    for (var i = 0; i < words.length; i++) {
-        var item = words[i];
-        var div = document.createElement('div');
-        div.className = 'word-entry';
-        div.innerHTML = '<span class="word-title">' + item.word + '</span>' +
-                        '<span class="word-transcription">' + item.uk + ' | ' + item.us + '</span>' +
-                        '<span class="word-translation">' + item.ru + '</span>' +
-                        '<span class="word-example">' + item.ex + '</span>';
-        container.appendChild(div);
     }
-}
-    </script>
+
+    var paper = document.getElementById('paper');
+    var currentZoom = 1;
+    function zoomIn() { if (currentZoom < 1.5) { currentZoom += 0.1; paper.style.zoom = currentZoom; } }
+    function zoomOut() { if (currentZoom > 0.5) { currentZoom -= 0.1; paper.style.zoom = currentZoom; } }
+</script>
 </body>
 </html>
