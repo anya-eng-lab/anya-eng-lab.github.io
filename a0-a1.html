@@ -740,6 +740,20 @@ function zoomIn() {
 function zoomOut() {
     if (currentZoom > 0.5) { currentZoom -= 0.1; paper.style.zoom = currentZoom; }
 }
+   var container = document.getElementById('dictionary-list');
+if (container) {
+    container.innerHTML = "";
+    for (var i = 0; i < words.length; i++) {
+        var item = words[i];
+        var div = document.createElement('div');
+        div.className = 'word-entry';
+        div.innerHTML = '<span class="word-title">' + item.word + '</span>' +
+                        '<span class="word-transcription">' + item.uk + ' | ' + item.us + '</span>' +
+                        '<span class="word-translation">' + item.ru + '</span>' +
+                        '<span class="word-example">' + item.ex + '</span>';
+        container.appendChild(div);
+    }
+}
     </script>
 </body>
 </html>
